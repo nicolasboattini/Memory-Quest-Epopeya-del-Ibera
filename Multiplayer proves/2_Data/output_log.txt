@@ -1,0 +1,167 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x162)
+    Vendor:   Intel
+    VRAM:     1008 MB
+    Driver:   9.17.10.2884
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Photon3Unity3D.dll (this message is harmless)
+Loading E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\System.dll (this message is harmless)
+Platform assembly: E:\Users\damia\Documents\JocsUnity\MiniTutorials\BuscarParejas\Multiplayer proves\2_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.031 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+The referenced script on this Behaviour (Game Object 'Scripts') is missing!
+ 
+(Filename:  Line: 1758)
+
+UnloadTime: 1.441817 ms
+Nickname: b userID: 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Operation failed: OperationResponse 225: ReturnCode: 32760 (No match found). Parameters: {}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnPhotonRandomJoinFailed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Waiting for another player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Joined room: 8f069b60-8049-463e-b543-63123d73b630
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Other player arrived
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'a'  turn: 1 action: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnTimeEnds: Calling OnTurnCompleted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: -1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'a'  turn: 2 action: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'b' (master) turn: 2 action: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'a'  turn: 3 action: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'b' (master) turn: 3 action: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'a'  turn: 4 action: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'b' (master) turn: 4 action: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'a'  turn: 5 action: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnFinished: 'b' (master) turn: 5 action: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnTimeEnds: Calling OnTurnCompleted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: -1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnBegins() turn: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnTimeEnds: Calling OnTurnCompleted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OnTurnCompleted: -1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 194c -> priority: 1 
+  Thread -> id: 1e98 -> priority: 1 
+  Thread -> id: 1c40 -> priority: 1 
+  Thread -> id: 1d40 -> priority: 1 
