@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2e40c86701e7a2348b0dcee5227bb9db
+timeCreated: 1680030507
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Organic Brand
+  fontNames:
+  - Organic Brand
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

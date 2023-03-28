@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d055c36a1fd609c4eb88996572da8319
+timeCreated: 1680030647
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Grufy - Personala use only
+  fontNames:
+  - Grufy - Personala use only
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

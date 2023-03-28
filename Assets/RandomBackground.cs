@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomBackground : MonoBehaviour {
     public Sprite[] mySprites;
     public SpriteRenderer spriteRenderer;    
-
-    void ChangeSprite()
+	public int alter;
+	void ChangeSprite(int i)
     {
-        spriteRenderer.sprite = mySprites[0];
+        spriteRenderer.sprite = mySprites[i];
     }
 
-    private void Start()
-    {
-        ChangeSprite();
-    }
-}
+	void Update()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			alter = Random.Range (0, 9);
+			ChangeSprite(alter);
+		}
+	}
+
+   }
