@@ -22,6 +22,7 @@ public class CrearCartas : MonoBehaviour {
 	public InterfazUsuario interfazUsuario;
 
 	public int numParejasEncontradas;
+	public int nivel;
 
 	public void Reiniciar(){
 		ancho = 0;
@@ -39,26 +40,29 @@ public class CrearCartas : MonoBehaviour {
 		interfazUsuario.ReiniciarCronometro();
 		interfazUsuario.ActivarCronometro();
 
-		Crear ();
+		CrearParam ();
 	}
 
-	public void Crear(){
+	public void Crear()
+	{
 		ancho = interfazUsuario.dificultad;
 
-		int cont=0;
-		for(int i=0;i<ancho;i++){
-			for(int x=0;x<ancho;x++){
-				float factor =  9.0f/ancho;
-				Vector3 posicionTemp = new Vector3 (x*factor, 0, i*factor);
+		int cont = 0;
+		for (int i = 0; i < ancho; i++)
+		{
+			for (int x = 0; x < ancho; x++)
+			{
+				float factor = 9.0f / ancho;
+				Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
 
-				GameObject cartaTemp=Instantiate(CartaPrefab,posicionTemp,
-					Quaternion.Euler(new Vector3(0,180,0)));
+				GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
+					Quaternion.Euler(new Vector3(0, 180, 0)));
 
 				cartaTemp.transform.localScale *= factor;
 
-				cartas.Add (cartaTemp);
+				cartas.Add(cartaTemp);
 
-				cartaTemp.GetComponent<Carta> ().posicionOriginal = posicionTemp;
+				cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
 				//cartaTemp.GetComponent<Carta> ().idCarta = cont;
 
 				cartaTemp.transform.parent = CartasParent;
@@ -66,11 +70,54 @@ public class CrearCartas : MonoBehaviour {
 				cont++;
 			}
 		}
-		AsignarTexturas ();
-		Barajar ();
+		AsignarTexturas();
+		Barajar();
 	}
 
-	void AsignarTexturas(){
+    public void SetNivelFacil()
+	{
+		nivel = 2;
+	}
+    public void SetNivelMedio()
+    {
+        nivel = 4;
+    }
+    public void SetNivelDificil()
+    {
+        nivel = 6;
+    }
+    public void CrearParam()
+    {
+		ancho = nivel;
+
+        int cont = 0;
+        for (int i = 0; i < ancho; i++)
+        {
+            for (int x = 0; x < ancho; x++)
+            {
+                float factor = 9.0f / ancho;
+                Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
+
+                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
+                    Quaternion.Euler(new Vector3(0, 180, 0)));
+
+                cartaTemp.transform.localScale *= factor;
+
+                cartas.Add(cartaTemp);
+
+                cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
+                //cartaTemp.GetComponent<Carta> ().idCarta = cont;
+
+                cartaTemp.transform.parent = CartasParent;
+
+                cont++;
+            }
+        }
+        AsignarTexturas();
+        Barajar();
+    }
+
+    void AsignarTexturas(){
 
 		int[] arrayTemp =new int[texturas.Length];
 
