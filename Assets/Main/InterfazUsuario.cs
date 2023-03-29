@@ -18,7 +18,7 @@ public class InterfazUsuario : MonoBehaviour {
 	public int SegundosCronometro;
 	public Text cronometro;
 	private TimeSpan tiempo;
-
+	private string temp;
 	void Start(){
 		CambiarDificultad ();
 	}
@@ -36,7 +36,10 @@ public class InterfazUsuario : MonoBehaviour {
 	public void MostrarMenuGanador(){
 		menuGanador.SetActive (true);
 		menuMostradoGanador = true;
-		textoMenuGanador.text = "HAS GANADO!" + '\n' + "Has encontrado todas las parejas en " + '\n' + tiempo;
+        string temp = string.Format("{0}:{1:00}", //Convertir a formato MM:SS
+        (int)tiempo.TotalMinutes,
+        tiempo.Seconds);
+        textoMenuGanador.text = "" + temp;
 	}
 
 	public void EsconderMenuGanador(){
@@ -68,7 +71,11 @@ public class InterfazUsuario : MonoBehaviour {
 	public void ActualizarCronometro(){
 		SegundosCronometro++;
 		tiempo = new TimeSpan(0,0,  SegundosCronometro);
-		cronometro.text = tiempo.ToString();
+        //string temp = string.Format("{00}:{01}", (int)tiempo.TotalMinutes, tiempo.Seconds);
+        string temp = string.Format("{0}:{1:00}", //Convertir a formato MM:SS
+        (int)tiempo.TotalMinutes,
+        tiempo.Seconds);
+        cronometro.text = temp;
 		Invoke ("ActualizarCronometro", 1.0f);
 	}
 

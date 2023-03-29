@@ -32,7 +32,7 @@ public class CrearCartas : MonoBehaviour {
 		}
 
 		contadorClicks = 0;
-		textoContadorIntentos.text = "Intentos";
+		textoContadorIntentos.text = "";
 		CartaMostrada = null;
 		sePuedeMostrar = true;
 		numParejasEncontradas = 0;
@@ -155,7 +155,7 @@ public class CrearCartas : MonoBehaviour {
 	}
 
 	public void ActualizarUI(){
-		textoContadorIntentos.text = "Intentos: " + contadorClicks;
+		textoContadorIntentos.text = "" + contadorClicks;
 	}
 
 	//	public void ProporcionarCartas(){

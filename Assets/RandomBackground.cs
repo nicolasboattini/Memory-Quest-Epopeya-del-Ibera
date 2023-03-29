@@ -5,20 +5,16 @@ using UnityEngine.UI;
 
 public class RandomBackground : MonoBehaviour {
     public Sprite[] mySprites;
-    public SpriteRenderer spriteRenderer;    
-	public int alter;
-	void ChangeSprite(int i)
+    public SpriteRenderer spriteRenderer;    	
+	public void ChangeSprite(int i)
     {
         spriteRenderer.sprite = mySprites[i];
     }
 
-	void Update()
+	public void Change()
 	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			alter = Random.Range (0, 9);
-			ChangeSprite(alter);
-		}
+		ChangeSprite(Random.Range(0, mySprites.Length));
+		
 	}
 
    }
