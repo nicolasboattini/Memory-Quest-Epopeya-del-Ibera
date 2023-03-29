@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI ;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class InterfazUsuario : MonoBehaviour {
@@ -19,7 +17,11 @@ public class InterfazUsuario : MonoBehaviour {
 	public Text cronometro;
 	private TimeSpan tiempo;
 	private string temp;
-	void Start(){
+
+    public Sprite[] mySprites;
+    public SpriteRenderer spriteRenderer;
+
+    void Start(){
 		CambiarDificultad ();
 	}
 
@@ -78,6 +80,17 @@ public class InterfazUsuario : MonoBehaviour {
         cronometro.text = temp;
 		Invoke ("ActualizarCronometro", 1.0f);
 	}
+
+    public void ChangeSprite(int i)
+    {
+        spriteRenderer.sprite = mySprites[i];
+    }
+
+    public void Change()
+    {
+        ChangeSprite(UnityEngine.Random.Range(0, mySprites.Length));
+
+    }
 
 
 }

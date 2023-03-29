@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 43052146}
   - component: {fileID: 43052148}
   - component: {fileID: 43052147}
+  - component: {fileID: 43052149}
   m_Layer: 0
   m_Name: Intentos
   m_TagString: Untagged
@@ -140,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.50625, y: 0.25434813}
   m_AnchorMax: {x: 0.50625, y: 0.25434813}
-  m_AnchoredPosition: {x: 65.68219, y: -7.809593}
+  m_AnchoredPosition: {x: 65.68219, y: -8.4}
   m_SizeDelta: {x: 216.30005, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43052147
@@ -175,13 +176,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 0
 --- !u!222 &43052148
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 43052145}
+--- !u!114 &43052149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43052145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &57367658
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +443,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 879109829}
+      - m_Target: {fileID: 879109828}
         m_MethodName: Change
         m_Mode: 1
         m_Arguments:
@@ -1333,7 +1348,6 @@ GameObject:
   - component: {fileID: 879109827}
   - component: {fileID: 879109826}
   - component: {fileID: 879109828}
-  - component: {fileID: 879109829}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1417,17 +1431,6 @@ MonoBehaviour:
   dificultad: 0
   SegundosCronometro: 0
   cronometro: {fileID: 1658694661}
---- !u!114 &879109829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 879109825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31b2ea003d6cd7842ac68b48dfb9a87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   mySprites:
   - {fileID: 21300000, guid: 63d6318b3fdbaf242b224361536208a8, type: 3}
   - {fileID: 21300000, guid: 88f0719ff9e5857419656064a92609d4, type: 3}
@@ -2137,6 +2140,7 @@ GameObject:
   - component: {fileID: 1658694663}
   - component: {fileID: 1658694662}
   - component: {fileID: 1658694661}
+  - component: {fileID: 1658694664}
   m_Layer: 5
   m_Name: Cronometro
   m_TagString: Untagged
@@ -2176,7 +2180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00:00
+  m_Text: 0:00
 --- !u!222 &1658694662
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2198,9 +2202,23 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.46250004, y: 0.22444938}
   m_AnchorMax: {x: 0.46250004, y: 0.22444938}
-  m_AnchoredPosition: {x: 52.027245, y: -10.236504}
+  m_AnchoredPosition: {x: 56.1, y: -10.236504}
   m_SizeDelta: {x: 216.30005, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1658694664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658694660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1815711825
 Prefab:
   m_ObjectHideFlags: 0
