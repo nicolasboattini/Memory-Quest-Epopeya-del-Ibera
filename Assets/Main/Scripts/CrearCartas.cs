@@ -24,12 +24,16 @@ public class CrearCartas : MonoBehaviour {
 	public int numParejasEncontradas;
 	public int nivel;
 
+    public Camera camara;
+    public GameObject fondo;
+    public GameObject tablero;
+
 	public void Reiniciar(){
 		ancho = 0;
 		cartas.Clear ();
 		GameObject[] cartasEli = GameObject.FindGameObjectsWithTag ("Carta");
 		for (int i = 0; i < cartasEli.Length; i++) {
-			DestroyImmediate  (cartasEli [i]);
+			Destroy (cartasEli [i]);
 		}
 
 		contadorClicks = 0;
@@ -86,11 +90,49 @@ public class CrearCartas : MonoBehaviour {
     {
         nivel = 6;
     }
+    /*public void CrearParam(int filas, int columnas)
+    {
+        // Calcular el tamaño que tendrían que tener las cartas
+        float cartaWidth = Screen.width / columnas * 0.8f;
+        float cartaHeight = Screen.height / filas * 0.8f;
+
+        // Calcular la posición de la primera carta
+        float startX = Screen.width / 2 - columnas / 2 * cartaWidth;
+        float startY = Screen.height / 2 - filas / 2 * cartaHeight;
+
+        // Crear las cartas
+        for (int i = 0; i < filas; i++)
+        {
+            for (int j = 0; j < columnas; j++)
+            {
+                int cartaActual = i * columnas + j;
+                float posX = startX + j * cartaWidth;
+                float posY = startY + i * cartaHeight;
+                GameObject nuevaCarta = Instantiate(CartaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
+                nuevaCarta.GetComponent<Carta>().idCarta = cartaActual % (filas * columnas / 2);
+                cartas.Add(nuevaCarta);
+            }
+        }
+    }*/
     public void CrearParam()
     {
 		ancho = nivel;
+        if (nivel == 2) // Si la dificultad es Fácil
+        {
+            // Mover la cámara a la posición central para la dificultad "Fácil"
+            Camera.main.transform.position = new Vector3(2.29f, 10.65f,1.97f);
+            //-1.66 +1.85 -1.58
+            fondo.transform.position = new Vector3(2.29f, -3.45f,  1.97f);
+            tablero.transform.position = new Vector3(2.25f, -0.54f, 1.91f);
+        } else
+        {
+            Camera.main.transform.position = new Vector3(3.95f, 8.8f, 3.55f);
+            fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
+            tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
+        }
 
         int cont = 0;
+        AsignarTexturas();
         for (int i = 0; i < ancho; i++)
         {
             for (int x = 0; x < ancho; x++)
@@ -113,7 +155,7 @@ public class CrearCartas : MonoBehaviour {
                 cont++;
             }
         }
-        AsignarTexturas();
+        
         Barajar();
     }
 
@@ -205,18 +247,18 @@ public class CrearCartas : MonoBehaviour {
 		textoContadorIntentos.text = "" + contadorClicks;
 	}
 
-	//	public void ProporcionarCartas(){
-	//		if (numCartas % 2 == 0) {
-	//			if (numCartas % 6 == 0) {
-	//				ancho = 6;
-	//				alto=numCartas / 6;
-	//			}
-	//
-	//			Crear ();
-	//
-	//		} else {
-	//			print ("Numero de cartas debe ser par");
-	//		}
-	//
-	//	}
+		/*public void ProporcionarCartas(){
+			if (numCartas % 2 == 0) {
+				if (numCartas % 6 == 0) {
+					ancho = 6;
+					alto=numCartas / 6;
+				}
+	
+				Crear ();
+	
+			} else {
+				print ("Numero de cartas debe ser par");
+			}
+	
+		}*/
 }

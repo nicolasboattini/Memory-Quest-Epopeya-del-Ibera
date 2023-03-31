@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -755,6 +755,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 879109828}
+        m_MethodName: ActivarCronometro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &343401434
@@ -1412,6 +1423,9 @@ MonoBehaviour:
   interfazUsuario: {fileID: 879109828}
   numParejasEncontradas: 0
   nivel: 0
+  camara: {fileID: 2033186620}
+  fondo: {fileID: 1975345491}
+  tablero: {fileID: 967103667}
 --- !u!4 &879109827
 Transform:
   m_ObjectHideFlags: 0
@@ -1608,6 +1622,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 879109828}
         m_MethodName: MostrarMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 879109828}
+        m_MethodName: PausarCronometro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
