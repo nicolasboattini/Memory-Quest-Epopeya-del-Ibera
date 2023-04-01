@@ -132,7 +132,7 @@ public class CrearCartas : MonoBehaviour {
         }
 
         int cont = 0;
-        AsignarTexturas();
+        
         for (int i = 0; i < ancho; i++)
         {
             for (int x = 0; x < ancho; x++)
@@ -155,7 +155,7 @@ public class CrearCartas : MonoBehaviour {
                 cont++;
             }
         }
-        
+        AsignarTexturas();
         Barajar();
     }
 
