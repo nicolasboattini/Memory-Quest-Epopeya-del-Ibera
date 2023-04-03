@@ -65,11 +65,7 @@ public class InterfazUsuario : MonoBehaviour {
 		dificultad = (int) sliderDif.value*2;
 		textoDificultad.text  = "Dificultad: " + dificultad ;
 	}
-
-
-   
-
-    
+       
     public void ActivarCronometro()
     {
         pausado = false;

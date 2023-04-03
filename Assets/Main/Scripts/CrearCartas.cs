@@ -47,7 +47,7 @@ public class CrearCartas : MonoBehaviour {
 		CrearParam ();
 	}
 
-	public void Crear()
+    /*public void Crear()
 	{
 		ancho = interfazUsuario.dificultad;
 
@@ -76,7 +76,7 @@ public class CrearCartas : MonoBehaviour {
 		}
 		AsignarTexturas();
 		Barajar();
-	}
+	}*/
 
     public void SetNivelFacil()
 	{
@@ -89,31 +89,7 @@ public class CrearCartas : MonoBehaviour {
     public void SetNivelDificil()
     {
         nivel = 6;
-    }
-    /*public void CrearParam(int filas, int columnas)
-    {
-        // Calcular el tamaño que tendrían que tener las cartas
-        float cartaWidth = Screen.width / columnas * 0.8f;
-        float cartaHeight = Screen.height / filas * 0.8f;
-
-        // Calcular la posición de la primera carta
-        float startX = Screen.width / 2 - columnas / 2 * cartaWidth;
-        float startY = Screen.height / 2 - filas / 2 * cartaHeight;
-
-        // Crear las cartas
-        for (int i = 0; i < filas; i++)
-        {
-            for (int j = 0; j < columnas; j++)
-            {
-                int cartaActual = i * columnas + j;
-                float posX = startX + j * cartaWidth;
-                float posY = startY + i * cartaHeight;
-                GameObject nuevaCarta = Instantiate(CartaPrefab, new Vector3(posX, posY, 0), Quaternion.identity);
-                nuevaCarta.GetComponent<Carta>().idCarta = cartaActual % (filas * columnas / 2);
-                cartas.Add(nuevaCarta);
-            }
-        }
-    }*/
+    }    
     public void CrearParam()
     {
 		ancho = nivel;
