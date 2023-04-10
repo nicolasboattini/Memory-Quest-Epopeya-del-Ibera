@@ -28,7 +28,11 @@ public class CrearCartas : MonoBehaviour {
     public GameObject fondo;
     public GameObject tablero;
 
-	public void Reiniciar(){
+    public AudioSource resultSound;
+    public AudioClip m_correctSound = null;
+    public AudioClip m_incorrectSound = null;
+
+    public void Reiniciar(){
 		ancho = 0;
 		cartas.Clear ();
 		GameObject[] cartasEli = GameObject.FindGameObjectsWithTag ("Carta");
@@ -92,47 +96,54 @@ public class CrearCartas : MonoBehaviour {
     }    
     public void CrearParam()
     {
-		ancho = nivel;
-        if (nivel == 2) // Si la dificultad es Fácil
-        {
-            // Mover la cámara a la posición central para la dificultad "Fácil"
-            Camera.main.transform.position = new Vector3(2.29f, 10.65f,1.97f);
-            //-1.66 +1.85 -1.58
-            fondo.transform.position = new Vector3(2.29f, -3.45f,  1.97f);
-            tablero.transform.position = new Vector3(2.25f, -0.54f, 1.91f);
+        if (nivel == 0){
+            print("Seleccione dificultad");
         } else
         {
-            Camera.main.transform.position = new Vector3(3.95f, 8.8f, 3.55f);
-            fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
-            tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
-        }
-
-        int cont = 0;
-        
-        for (int i = 0; i < ancho; i++)
-        {
-            for (int x = 0; x < ancho; x++)
+            ancho = nivel;
+            if (nivel == 2) // Si la dificultad es Fácil
             {
-                float factor = 9.0f / ancho;
-                Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
-
-                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
-                    Quaternion.Euler(new Vector3(0, 180, 0)));
-
-                cartaTemp.transform.localScale *= factor;
-
-                cartas.Add(cartaTemp);
-
-                cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
-                //cartaTemp.GetComponent<Carta> ().idCarta = cont;
-
-                cartaTemp.transform.parent = CartasParent;
-
-                cont++;
+                // Mover la cámara a la posición central para la dificultad "Fácil"
+                Camera.main.transform.position = new Vector3(2.29f, 10.65f, 1.97f);
+                //-1.66 +1.85 -1.58
+                fondo.transform.position = new Vector3(2.29f, -3.45f, 1.97f);
+                tablero.transform.position = new Vector3(2.25f, -0.54f, 1.91f);
             }
+            else
+            {
+                Camera.main.transform.position = new Vector3(3.95f, 8.8f, 3.55f);
+                fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
+                tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
+            }
+
+            int cont = 0;
+
+            for (int i = 0; i < ancho; i++)
+            {
+                for (int x = 0; x < ancho; x++)
+                {
+                    float factor = 9.0f / ancho;
+                    Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
+
+                    GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
+                        Quaternion.Euler(new Vector3(0, 180, 0)));
+
+                    cartaTemp.transform.localScale *= factor;
+
+                    cartas.Add(cartaTemp);
+
+                    cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
+                    //cartaTemp.GetComponent<Carta> ().idCarta = cont;
+
+                    cartaTemp.transform.parent = CartasParent;
+
+                    cont++;
+                }
+            }
+            AsignarTexturas();
+            Barajar();
         }
-        AsignarTexturas();
-        Barajar();
+		
     }
 
     void AsignarTexturas(){
@@ -188,14 +199,25 @@ public class CrearCartas : MonoBehaviour {
 			//ActualizarUI (); 
 			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
 				print ("Enhorabuena! Has encontrado una pareja!");
-				numParejasEncontradas++;
+                if (resultSound.isPlaying)
+                {
+                    resultSound.Stop();
+                }
+                resultSound.clip = m_correctSound;
+                resultSound.Play();
+                numParejasEncontradas++;
 				if (numParejasEncontradas == cartas.Count / 2) {
 					print ("Enhorabuena! Has encontrado todas las parejas!");
 					interfazUsuario.MostrarMenuGanador ();
 				}
 
 			} else {
-				
+				if (resultSound.isPlaying)
+                {
+                    resultSound.Stop();
+                }
+                resultSound.clip = m_incorrectSound;
+                resultSound.Play();
 				_carta.EsconderCarta ();
 				CartaMostrada.EsconderCarta();
                 contadorClicks++; //Contador de errores

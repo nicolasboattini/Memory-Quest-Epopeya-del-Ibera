@@ -27,8 +27,7 @@ public class InterfazUsuario : MonoBehaviour {
     private bool inicioPresionado = false;
     
     public Text cronometro;
-    public Button botonInicio;
-    
+    public Button botonInicio;    
 
     void Start(){
 		CambiarDificultad ();
