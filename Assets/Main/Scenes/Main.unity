@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 650051271}
   m_Layer: 5
   m_Name: Medio
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: da0143285e8a84c4580c85548f0245c4, type: 3}
   - {fileID: 2800000, guid: b8d1f577612c2df4994677e52deff5e3, type: 3}
   - {fileID: 2800000, guid: 835ea16bd8c3f7f428bf279a4262e1d5, type: 3}
-  contadorClicks: 0
+  contadorClicks: 1
   textoContadorIntentos: {fileID: 43052147}
   CartaMostrada: {fileID: 0}
   sePuedeMostrar: 1
@@ -1721,7 +1721,7 @@ GameObject:
   - component: {fileID: 1127796335}
   m_Layer: 5
   m_Name: Mute
-  m_TagString: Untagged
+  m_TagString: MUTE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1910,7 +1910,7 @@ GameObject:
   - component: {fileID: 1252176412}
   m_Layer: 5
   m_Name: Dificil
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2074,7 +2074,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aa362aad4d9a5a4498f3f1106f79d701, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a07555adc87e7b2478164b7f1342a1ba, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3162,7 +3162,7 @@ GameObject:
   - component: {fileID: 2106421177}
   m_Layer: 5
   m_Name: Facil
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

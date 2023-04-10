@@ -13,7 +13,7 @@ public class CrearCartas : MonoBehaviour {
 	public Material[] materiales;
 	public Texture2D[] texturas;
 
-	public int contadorClicks;
+	public int contadorClicks = 1;
 	public Text textoContadorIntentos;
 
 	public Carta CartaMostrada;
@@ -184,8 +184,8 @@ public class CrearCartas : MonoBehaviour {
 		if (CartaMostrada == null) {
 			CartaMostrada = _carta;
 		} else {
-			contadorClicks++;
-			ActualizarUI (); 
+			//contadorClicks++; Contador de Intentos
+			//ActualizarUI (); 
 			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
 				print ("Enhorabuena! Has encontrado una pareja!");
 				numParejasEncontradas++;
@@ -198,7 +198,10 @@ public class CrearCartas : MonoBehaviour {
 				
 				_carta.EsconderCarta ();
 				CartaMostrada.EsconderCarta();
-			}
+                contadorClicks++; //Contador de errores
+                ActualizarUI();
+                print("La Pareja No Coincide");
+            }
 			CartaMostrada = null;
 
 		}

@@ -9,7 +9,7 @@ public class Carta : MonoBehaviour {
 	public Texture2D texturaAnverso;
 	public Texture2D  texturaReverso;
 
-	public float tiempoDelay;
+	public float tiempoDelay = 2;
 	public GameObject  crearCartas;
 	public bool Mostrando;
 
