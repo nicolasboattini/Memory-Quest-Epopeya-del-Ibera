@@ -8,7 +8,9 @@ public class InterfazUsuario : MonoBehaviour {
 	public Text textoMenuGanador;
 	public Slider sliderDif;
 	public Text textoDificultad;
+    public GameObject errorPanel;
 
+    public bool errorShown = false;
 	public bool menuMostrado;
 	public bool menuMostradoGanador;
 	public int dificultad;
@@ -129,7 +131,14 @@ public class InterfazUsuario : MonoBehaviour {
         ChangeSprite(UnityEngine.Random.Range(0, mySprites.Length));
 
     }
-    
+
+    public void swapErrorPanel()
+    {
+        errorShown = !errorShown;
+        errorPanel.SetActive(errorShown);
+        
+    }
+
     public void GameExit()
     {
     #if UNITY_EDITOR

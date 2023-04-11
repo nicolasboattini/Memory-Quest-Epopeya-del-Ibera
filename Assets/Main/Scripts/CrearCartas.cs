@@ -33,54 +33,33 @@ public class CrearCartas : MonoBehaviour {
     public AudioClip m_incorrectSound = null;
 
     public void Reiniciar(){
-		ancho = 0;
-		cartas.Clear ();
-		GameObject[] cartasEli = GameObject.FindGameObjectsWithTag ("Carta");
-		for (int i = 0; i < cartasEli.Length; i++) {
-			Destroy (cartasEli [i]);
-		}
 
-		contadorClicks = 0;
-		textoContadorIntentos.text = "";
-		CartaMostrada = null;
-		sePuedeMostrar = true;
-		numParejasEncontradas = 0;
-		interfazUsuario.ReiniciarCronometro();
-		interfazUsuario.ActivarCronometro();
+        if (nivel == 0)
+        {
+            print("Seleccione dificultad");
+            interfazUsuario.swapErrorPanel();
+        }
+        else
+        {
+            ancho = 0;
+            cartas.Clear();
+            GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
+            for (int i = 0; i < cartasEli.Length; i++)
+            {
+                Destroy(cartasEli[i]);
+            }
 
-		CrearParam ();
+            contadorClicks = 0;
+            textoContadorIntentos.text = "";
+            CartaMostrada = null;
+            sePuedeMostrar = true;
+            numParejasEncontradas = 0;
+            interfazUsuario.ReiniciarCronometro();
+            interfazUsuario.ActivarCronometro();
+            interfazUsuario.Inicio();
+            CrearParam();
+        }
 	}
-
-    /*public void Crear()
-	{
-		ancho = interfazUsuario.dificultad;
-
-		int cont = 0;
-		for (int i = 0; i < ancho; i++)
-		{
-			for (int x = 0; x < ancho; x++)
-			{
-				float factor = 9.0f / ancho;
-				Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
-
-				GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
-					Quaternion.Euler(new Vector3(0, 180, 0)));
-
-				cartaTemp.transform.localScale *= factor;
-
-				cartas.Add(cartaTemp);
-
-				cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
-				//cartaTemp.GetComponent<Carta> ().idCarta = cont;
-
-				cartaTemp.transform.parent = CartasParent;
-
-				cont++;
-			}
-		}
-		AsignarTexturas();
-		Barajar();
-	}*/
 
     public void SetNivelFacil()
 	{
@@ -96,10 +75,10 @@ public class CrearCartas : MonoBehaviour {
     }    
     public void CrearParam()
     {
-        if (nivel == 0){
-            print("Seleccione dificultad");
-        } else
-        {
+        //if (nivel == 0){
+            //print("Seleccione dificultad");
+        //} else
+        //{
             ancho = nivel;
             if (nivel == 2) // Si la dificultad es Fácil
             {
@@ -142,7 +121,7 @@ public class CrearCartas : MonoBehaviour {
             }
             AsignarTexturas();
             Barajar();
-        }
+        //}
 		
     }
 
