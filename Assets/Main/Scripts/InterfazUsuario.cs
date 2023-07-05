@@ -22,8 +22,7 @@ public class InterfazUsuario : MonoBehaviour {
 
     private bool pausado = false;
     private float tiempoPausa = 0f;
-    private float tiempoInicio = 0f;
-    private float tiempoActual = 0f;
+    private float tiempoInicio = 0f;   
     private int SegundosCronometro = 0;
     private TimeSpan tiempo;
     private bool inicioPresionado = false;
