@@ -63,15 +63,15 @@ public class CrearCartas : MonoBehaviour {
 
     public void SetNivelFacil()
 	{
-		nivel = 2;
+		nivel = 4;
 	}
     public void SetNivelMedio()
     {
-        nivel = 4;
+        nivel = 6;
     }
     public void SetNivelDificil()
     {
-        nivel = 6;
+        nivel = 8;
     }    
     public void CrearParam()
     {
@@ -80,7 +80,7 @@ public class CrearCartas : MonoBehaviour {
         //} else
         //{
             ancho = nivel;
-            if (nivel == 2) // Si la dificultad es Fácil
+            /*if (nivel == 4) // Si la dificultad es Fácil
             {
                 // Mover la cámara a la posición central para la dificultad "Fácil"
                 Camera.main.transform.position = new Vector3(2.29f, 10.65f, 1.97f);
@@ -93,13 +93,13 @@ public class CrearCartas : MonoBehaviour {
                 Camera.main.transform.position = new Vector3(3.95f, 8.8f, 3.55f);
                 fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
                 tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
-            }
+            }*/
 
             int cont = 0;
 
-            for (int i = 0; i < ancho; i++)
+            for (int i = 0; i < ancho-2; i++)
             {
-                for (int x = 0; x < ancho; x++)
+                for (int x = 0; x < ancho/2; x++)
                 {
                     float factor = 9.0f / ancho;
                     Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
@@ -143,7 +143,7 @@ public class CrearCartas : MonoBehaviour {
 		}
 
 		//int[] arrayDefinitivo = new int[ancho*ancho];
-		int[] arrayDefinitivo = new int[(ancho*ancho)/2];
+		int[] arrayDefinitivo = new int[((ancho-2)*ancho/2)/2];
 
 		for (int i = 0; i < arrayDefinitivo.Length ; i++) {
 			arrayDefinitivo [i] = arrayTemp [i];
