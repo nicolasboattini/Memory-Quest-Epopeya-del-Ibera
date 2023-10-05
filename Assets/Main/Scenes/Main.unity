@@ -1746,6 +1746,9 @@ MonoBehaviour:
   CartaPrefab: {fileID: 1031706373733912, guid: 15b3427fc2b7e29498ff58f75cfa6621,
     type: 2}
   ancho: 3
+  nivel: 0
+  rows: 0
+  cols: 0
   CartasParent: {fileID: 788094606}
   materiales: []
   texturas:
@@ -1773,7 +1776,6 @@ MonoBehaviour:
   sePuedeMostrar: 1
   interfazUsuario: {fileID: 879109828}
   numParejasEncontradas: 0
-  nivel: 0
   camara: {fileID: 2033186620}
   fondo: {fileID: 1975345491}
   tablero: {fileID: 967103667}
@@ -1911,12 +1913,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967103667}
-  m_LocalRotation: {x: 0.00000013240823, y: 0.7071068, z: 0.7071068, w: -0.00000013240823}
-  m_LocalPosition: {x: 3.9, y: -14.66, z: 2.22}
+  m_LocalRotation: {x: 0.0000001872535, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.049999952, y: -1.329998, z: 14.660002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 2033186621}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 180.00002, z: 0}
 --- !u!1 &1076828044
 GameObject:
@@ -3298,12 +3300,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1975345491}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.95, y: -16.65, z: 3.55}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16.650002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 2033186621}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1978859608
 GameObject:
@@ -3424,7 +3426,9 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.95, y: 0, z: 3.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 967103669}
+  - {fileID: 1975345493}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

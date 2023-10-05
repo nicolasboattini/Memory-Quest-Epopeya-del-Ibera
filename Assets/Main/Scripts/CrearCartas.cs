@@ -7,6 +7,9 @@ public class CrearCartas : MonoBehaviour {
 
 	public GameObject CartaPrefab;
 	public int ancho;
+    public int nivel;
+    public int rows;
+    public int cols;
 	public Transform CartasParent;
 	private List<GameObject> cartas = new List<GameObject> ();
 
@@ -22,7 +25,7 @@ public class CrearCartas : MonoBehaviour {
 	public InterfazUsuario interfazUsuario;
 
 	public int numParejasEncontradas;
-	public int nivel;
+	
 
     public Camera camara;
     public GameObject fondo;
@@ -79,7 +82,7 @@ public class CrearCartas : MonoBehaviour {
             //print("Seleccione dificultad");
         //} else
         //{
-            ancho = nivel;
+            
             /*if (nivel == 4) // Si la dificultad es Fácil
             {
                 // Mover la cámara a la posición central para la dificultad "Fácil"
@@ -94,15 +97,33 @@ public class CrearCartas : MonoBehaviour {
                 fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
                 tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
             }*/
+            switch(nivel){
+                case 4:
+                    rows = 3;
+                    cols = 2;
+                    Camera.main.transform.position = new Vector3(1f, 7.61f, 2.67f);
+                break;
 
+                case 6:
+                    rows= 6;
+                    cols= 3;
+                    Camera.main.transform.position = new Vector3(1.37f, 9.22f, 4.03f);
+                break;
+
+                case 8:
+                    rows=6;
+                    cols=4;
+                    Camera.main.transform.position = new Vector3(1.37f, 6.71f, 2.83f);
+                break;
+            }
             int cont = 0;
 
-            for (int i = 0; i < ancho-2; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int x = 0; x < ancho/2; x++)
+                for (int x = 0; x < cols; x++)
                 {
-                    float factor = 9.0f / ancho;
-                    Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
+                    float factor = 9.0f / nivel;
+                    Vector3 posicionTemp = new Vector3((float)(x * (factor-0.2)), 0, (float)(i * (factor-0.2)));
 
                     GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
                         Quaternion.Euler(new Vector3(0, 180, 0)));
@@ -143,7 +164,7 @@ public class CrearCartas : MonoBehaviour {
 		}
 
 		//int[] arrayDefinitivo = new int[ancho*ancho];
-		int[] arrayDefinitivo = new int[((ancho-2)*ancho/2)/2];
+		int[] arrayDefinitivo = new int[(rows*cols)/2];
 
 		for (int i = 0; i < arrayDefinitivo.Length ; i++) {
 			arrayDefinitivo [i] = arrayTemp [i];
