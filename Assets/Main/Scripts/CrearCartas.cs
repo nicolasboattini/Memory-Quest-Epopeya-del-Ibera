@@ -65,8 +65,7 @@ public class CrearCartas : MonoBehaviour {
         nivel = 8;
     }    
 
-    public void CrearParam()
-    {
+    public void CrearParam(){
             switch(nivel){
                 case 4:
                     rows = 3;
@@ -111,12 +110,12 @@ public class CrearCartas : MonoBehaviour {
                 }
  
             }
-        }
+        
         AsignarTexturas();
         Barajar();
     }
 
-    void AsignarTexturas(){
+    public void AsignarTexturas(){
 		int[] arrayTemp =new int[texturas.Length];
 		for (int i = 0; i <= texturas.Length-1; i++){
 			arrayTemp [i] = i;
