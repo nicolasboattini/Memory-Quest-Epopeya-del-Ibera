@@ -5,32 +5,23 @@ using UnityEngine.UI;
 
 public class CrearCartas : MonoBehaviour {
 
-	public GameObject CartaPrefab;
-	public int ancho;
+    public InterfazUsuario interfazUsuario;
+    private List<GameObject> cartas = new List<GameObject>();
+    public GameObject CartaPrefab;
+    public GameObject fondo;
+    public GameObject tablero;
+    public Carta CartaMostrada;
+    public Transform CartasParent;
+    public Camera camara;
+    public Material[] materiales;
+    public Texture2D[] texturas;    
     public int nivel;
     public int rows;
     public int cols;
-	public Transform CartasParent;
-	private List<GameObject> cartas = new List<GameObject> ();
-
-	public Material[] materiales;
-	public Texture2D[] texturas;
-
-	public int contadorClicks = 1;
-	public Text textoContadorIntentos;
-
-	public Carta CartaMostrada;
-	public bool sePuedeMostrar = true;
-
-	public InterfazUsuario interfazUsuario;
-
-	public int numParejasEncontradas;
-	
-
-    public Camera camara;
-    public GameObject fondo;
-    public GameObject tablero;
-
+    public int numParejasEncontradas;
+    public int contadorClicks = 1;
+    public bool sePuedeMostrar = true;
+    public Text textoContadorIntentos;
     public AudioSource resultSound;
     public AudioClip m_correctSound = null;
     public AudioClip m_incorrectSound = null;
@@ -43,8 +34,7 @@ public class CrearCartas : MonoBehaviour {
             interfazUsuario.swapErrorPanel();
         }
         else
-        {
-            ancho = 0;
+        {            
             cartas.Clear();
             GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
             for (int i = 0; i < cartasEli.Length; i++)
@@ -78,42 +68,23 @@ public class CrearCartas : MonoBehaviour {
     }    
     public void CrearParam()
     {
-        //if (nivel == 0){
-            //print("Seleccione dificultad");
-        //} else
-        //{
-            
-            /*if (nivel == 4) // Si la dificultad es Fácil
-            {
-                // Mover la cámara a la posición central para la dificultad "Fácil"
-                Camera.main.transform.position = new Vector3(2.29f, 10.65f, 1.97f);
-                //-1.66 +1.85 -1.58
-                fondo.transform.position = new Vector3(2.29f, -3.45f, 1.97f);
-                tablero.transform.position = new Vector3(2.25f, -0.54f, 1.91f);
-            }
-            else
-            {
-                Camera.main.transform.position = new Vector3(3.95f, 8.8f, 3.55f);
-                fondo.transform.position = new Vector3(3.95f, -5.3f, 3.55f);
-                tablero.transform.position = new Vector3(3.91f, -2.11f, 3.49f);
-            }*/
             switch(nivel){
                 case 4:
                     rows = 3;
                     cols = 2;
-                    Camera.main.transform.position = new Vector3(1f, 7.61f, 2.67f);
+                    Camera.main.transform.position = new Vector3(1f, 7.61f, 3.01f);
                 break;
 
                 case 6:
                     rows= 6;
                     cols= 3;
-                    Camera.main.transform.position = new Vector3(1.37f, 9.22f, 4.03f);
+                    Camera.main.transform.position = new Vector3(1.21f, 9.22f, 4.33f);
                 break;
 
                 case 8:
                     rows=6;
                     cols=4;
-                    Camera.main.transform.position = new Vector3(1.37f, 6.71f, 2.83f);
+                    Camera.main.transform.position = new Vector3(1.34f, 6.71f, 3.1f);
                 break;
             }
             int cont = 0;
