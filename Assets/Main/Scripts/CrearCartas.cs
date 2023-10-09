@@ -35,6 +35,7 @@ public class CrearCartas : MonoBehaviour {
         }
         else
         {            
+
             cartas.Clear();
             GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
             for (int i = 0; i < cartasEli.Length; i++)
@@ -54,18 +55,16 @@ public class CrearCartas : MonoBehaviour {
         }
 	}
 
-    public void SetNivelFacil()
-	{
+    public void SetNivelFacil(){
 		nivel = 4;
 	}
-    public void SetNivelMedio()
-    {
+    public void SetNivelMedio(){
         nivel = 6;
     }
-    public void SetNivelDificil()
-    {
+    public void SetNivelDificil(){
         nivel = 8;
     }    
+
     public void CrearParam()
     {
             switch(nivel){
@@ -110,47 +109,37 @@ public class CrearCartas : MonoBehaviour {
 
                     cont++;
                 }
+ 
             }
-            AsignarTexturas();
-            Barajar();
-        //}
-		
+        }
+        AsignarTexturas();
+        Barajar();
     }
 
     void AsignarTexturas(){
-
 		int[] arrayTemp =new int[texturas.Length];
-
-		for (int i = 0; i <= texturas.Length-1; i++) {
+		for (int i = 0; i <= texturas.Length-1; i++){
 			arrayTemp [i] = i;
 		}
-
-
-		for (int t = 0; t < arrayTemp.Length; t++ )
-		{
+		for (int t = 0; t < arrayTemp.Length; t++ ){
 			int tmp = arrayTemp[t];
 			int r = Random.Range(t, arrayTemp.Length);
 			arrayTemp[t] = arrayTemp[r];
 			arrayTemp[r] = tmp;
 		}
-
 		//int[] arrayDefinitivo = new int[ancho*ancho];
-		int[] arrayDefinitivo = new int[(rows*cols)/2];
-
-		for (int i = 0; i < arrayDefinitivo.Length ; i++) {
+		int[] arrayDefinitivo = new int[rows*cols/2];
+		for (int i = 0; i < arrayDefinitivo.Length ; i++){
 			arrayDefinitivo [i] = arrayTemp [i];
 		}
-
-
 		for(int i=0;i<cartas.Count ;i++){
-			cartas[i].GetComponent<Carta> ().AsignarTextura (texturas[(arrayDefinitivo[i/2])] );
+			cartas[i].GetComponent<Carta> ().AsignarTextura (texturas[arrayDefinitivo[i/2]] );
 			cartas [i].GetComponent<Carta> ().idCarta = i / 2;
 		}
 	}
 
 	void Barajar(){
 		int aleatorio;
-
 		for (int i = 0; i < cartas.Count; i++) {
 			aleatorio = Random.Range (i, cartas.Count);
 
@@ -219,18 +208,15 @@ public class CrearCartas : MonoBehaviour {
 		textoContadorIntentos.text = "" + contadorClicks;
 	}
 
-		/*public void ProporcionarCartas(){
-			if (numCartas % 2 == 0) {
-				if (numCartas % 6 == 0) {
-					ancho = 6;
-					alto=numCartas / 6;
-				}
-	
-				Crear ();
-	
+	/*public void ProporcionarCartas(){
+		if (numCartas % 2 == 0) {
+			if (numCartas % 6 == 0) {
+				ancho = 6;
+				alto=numCartas / 6;
+			}	
+			Crear ();
 			} else {
 				print ("Numero de cartas debe ser par");
 			}
-	
-		}*/
+	}*/
 }
