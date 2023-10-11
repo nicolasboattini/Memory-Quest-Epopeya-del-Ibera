@@ -14,14 +14,25 @@ public class Carta : MonoBehaviour {
 	public bool Mostrando;
 
 	public GameObject  interfazUsuario;
+	private bool _interactiva = true;
+    public bool Interactiva
+    {
+        get { return _interactiva; }
+        set { _interactiva = value; }
+    }
 
 
 	void Awake(){
 		crearCartas = GameObject.Find ("Scripts");
-		interfazUsuario= GameObject.Find ("Scripts");
+		interfazUsuario = GameObject.Find ("Scripts");
 	}
 
 	void Start(){
+		InterfazUsuario interfazUsuario = crearCartas.GetComponent<InterfazUsuario>();
+        if (interfazUsuario != null)
+        {
+            interfazUsuario.AgregarCarta(this);
+        }
 		EsconderCarta ();
 	}
 
@@ -38,7 +49,7 @@ public class Carta : MonoBehaviour {
 	}
 
 	public void MostrarCarta(){
-		if (!Mostrando && crearCartas.GetComponent<CrearCartas>().sePuedeMostrar) {
+		if (Interactiva && !Mostrando && crearCartas.GetComponent<CrearCartas>().sePuedeMostrar) {
 			Mostrando = true;
 			GetComponent<MeshRenderer> ().material.mainTexture = texturaAnverso;
 			//Invoke ("EsconderCarta", tiempoDelay);

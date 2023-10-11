@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class InterfazUsuario : MonoBehaviour {
     public CrearCartas crearCartas;    
+    public List<Carta> cartas;
 	public GameObject menu;
 	public GameObject menuGanador;
+     public GameObject menuPerdedor;
 	public Text textoMenuGanador;
 	public Slider sliderDif;
 	public Text textoDificultad;
@@ -14,6 +18,7 @@ public class InterfazUsuario : MonoBehaviour {
     public bool errorShown = false;
 	public bool menuMostrado;
 	public bool menuMostradoGanador;
+    public bool menuMostradoPerdedor;
 	public int dificultad;
 
     public string temp;
@@ -55,13 +60,34 @@ public class InterfazUsuario : MonoBehaviour {
         textoMenuGanador.text = "" + temp;
         PausarCronometro();
 	}
-
 	public void EsconderMenuGanador(){
 		menuGanador.SetActive (false);
 		menuMostradoGanador = false;
 	}
-
-
+    public void MostrarMenuPerdedor(){
+        foreach (Carta carta in cartas)
+        {
+        carta.Interactiva = false;
+        }
+		menuPerdedor.SetActive (true);
+		menuMostradoPerdedor = true;        
+        PausarCronometro();
+	}
+	public void EsconderMenuPerdedor(){
+        foreach (Carta carta in cartas)
+        {
+        carta.Interactiva = true;
+        }
+		menuPerdedor.SetActive (false);
+		menuMostradoPerdedor = false;
+	}
+    public void AgregarCarta(Carta carta)
+{
+    if (!cartas.Contains(carta))
+    {
+        cartas.Add(carta);
+    }
+}
 	public void CambiarDificultad(){
 		dificultad = (int) sliderDif.value*2;
 		textoDificultad.text  = "Dificultad: " + dificultad ;
@@ -83,47 +109,57 @@ public class InterfazUsuario : MonoBehaviour {
         
     }
 
-    public void ActualizarCronometro()
-    {
-        if (inicioPresionado && !pausado) // Comprobar si el cronómetro está en pausa y si el botón de inicio ha sido presionado
-        {
+    public void ActualizarCronometro(){
+        if (inicioPresionado && !pausado){
             if (tiempoPausa != 0)
-            { // Si el cronómetro ha estado en pausa
-                SegundosCronometro += (int)(Time.time - tiempoPausa); // Sumar el tiempo que ha transcurrido desde la pausa
-                tiempoPausa = 0; // Reiniciar la variable tiempoPausa
-            }
-            else
             {
-                SegundosCronometro = (int)(Time.time - tiempoInicio); // Si no está en pausa, actualizar los segundos del cronómetro normalmente
-            }   
-            tiempo = new TimeSpan(0, 0, SegundosCronometro);
-            string temp = string.Format("{0}:{1:00}", //Convertir a formato MM:SS
-                (int)tiempo.TotalMinutes,
-                tiempo.Seconds);
-            cronometro.text = temp;
+                SegundosCronometro += (int)(Time.time - tiempoPausa);
+                tiempoPausa = 0;
+            } else {
+                SegundosCronometro = (int)(Time.time - tiempoInicio);
+            }
             int tempLevel = crearCartas.nivel;
-            switch(tempLevel){
-                        case 2:
-                            if (tiempo.Seconds == 30){
-                                MostrarMenuGanador();                    
-                            }
-                            break;
-                        case 4:
-                            if (tiempo.Minutes == 1 && tiempo.Seconds == 15){
-                                MostrarMenuGanador();                    
-                            }
-                            break;
-                        case 6:
-                            if (tiempo.Minutes == 1 && tiempo.Seconds == 45){
-                                MostrarMenuGanador();                    
-                            }
-                            break;
-                        default:
-                            break;
-            } 
+            int tiempoRestante;
+            int tiempoLimite;
+            tiempo = new TimeSpan(0, 0, SegundosCronometro);            
+            switch (tempLevel){
+                case 2:
+                    tiempoRestante = 30 - SegundosCronometro;
+                    if (tiempoRestante <= 0)
+                    {
+                        tiempoRestante = 0;
+                        MostrarMenuPerdedor();                           
+                    }
+                    break;
+                case 4:
+                    tiempoLimite = (1 * 60 + 15); // 1 minuto y 15 segundos
+                    tiempoRestante = tiempoLimite - SegundosCronometro;
+                    if (tiempoRestante <= 0)
+                    {
+                        tiempoRestante = 0;
+                        MostrarMenuPerdedor();
+                    }
+                   break;
+                case 6:
+                    tiempoLimite = (1 * 60 + 45); // 1 minuto y 45 segundos
+                    tiempoRestante = tiempoLimite - SegundosCronometro;
+                    if (tiempoRestante <= 0)
+                    {
+                        tiempoRestante = 0;
+                        MostrarMenuPerdedor();
+                    }
+                    break;
+                default:
+                    tiempoRestante = 0;
+                    break;
+            }
+            // Convertir el tiempo restante a minutos y segundos
+            int minutos = tiempoRestante / 60;
+            int segundos = tiempoRestante % 60;
+            string tiempoRestanteStr = string.Format("{0}:{1:00}", minutos, segundos);
+            cronometro.text = tiempoRestanteStr;
         }
     }
-
     public void PausarCronometro()
     {
         if (inicioPresionado && !pausado) // Comprobar si el cronómetro está en pausa y si el botón de inicio ha sido presionado
