@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 
 public class InterfazUsuario : MonoBehaviour {
+    public CrearCartas crearCartas;    
 	public GameObject menu;
 	public GameObject menuGanador;
 	public Text textoMenuGanador;
@@ -94,12 +95,32 @@ public class InterfazUsuario : MonoBehaviour {
             else
             {
                 SegundosCronometro = (int)(Time.time - tiempoInicio); // Si no está en pausa, actualizar los segundos del cronómetro normalmente
-            }
+            }   
             tiempo = new TimeSpan(0, 0, SegundosCronometro);
             string temp = string.Format("{0}:{1:00}", //Convertir a formato MM:SS
                 (int)tiempo.TotalMinutes,
                 tiempo.Seconds);
             cronometro.text = temp;
+            int tempLevel = crearCartas.nivel;
+            switch(tempLevel){
+                        case 2:
+                            if (tiempo.Seconds == 30){
+                                MostrarMenuGanador();                    
+                            }
+                            break;
+                        case 4:
+                            if (tiempo.Minutes == 1 && tiempo.Seconds == 15){
+                                MostrarMenuGanador();                    
+                            }
+                            break;
+                        case 6:
+                            if (tiempo.Minutes == 1 && tiempo.Seconds == 45){
+                                MostrarMenuGanador();                    
+                            }
+                            break;
+                        default:
+                            break;
+            } 
         }
     }
 
