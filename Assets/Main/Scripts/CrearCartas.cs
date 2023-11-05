@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class CrearCartas : MonoBehaviour {
 
-	public GameObject CartaPrefab;
-	public int ancho;
+	public GameObject CartaPrefab;	
     public int rows;
     public int cols;
 	public Transform CartasParent;
 	private List<GameObject> cartas = new List<GameObject> ();
-
-	public Material[] materiales;
+    	
 	public Texture2D[] texturas;
 
 	public int contadorClicks = 1;
@@ -42,8 +40,7 @@ public class CrearCartas : MonoBehaviour {
             interfazUsuario.swapErrorPanel();
         }
         else
-        {
-            ancho = 0;
+        {            
             cartas.Clear();
             GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
             for (int i = 0; i < cartasEli.Length; i++)
@@ -103,8 +100,7 @@ public class CrearCartas : MonoBehaviour {
                 Quaternion.Euler(new Vector3(0, 180, 0)));
                 cartaTemp.transform.localScale *= factor;
                 cartas.Add(cartaTemp);
-                cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;
-                //cartaTemp.GetComponent<Carta> ().idCarta = cont;
+                cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;                
                 cartaTemp.transform.parent = CartasParent;
                 cont++;
             }
@@ -130,7 +126,7 @@ public class CrearCartas : MonoBehaviour {
 			arrayTemp[r] = tmp;
 		}
 
-		//int[] arrayDefinitivo = new int[ancho*ancho];
+		
 		int[] arrayDefinitivo = new int[(rows*cols)/2];
 
 		for (int i = 0; i < arrayDefinitivo.Length ; i++) {
@@ -199,9 +195,6 @@ public class CrearCartas : MonoBehaviour {
 
 	public bool CompararCartas(GameObject carta1, GameObject carta2){
 		bool resultado;
-
-//		if (carta1.GetComponent<MeshRenderer> ().material.mainTexture ==
-//		    carta2.GetComponent<MeshRenderer> ().material.mainTexture) {
 		if (carta1.GetComponent<Carta> ().idCarta  ==
 			carta2.GetComponent<Carta> ().idCarta) {
 			resultado = true;
@@ -215,18 +208,5 @@ public class CrearCartas : MonoBehaviour {
 		textoContadorIntentos.text = "" + contadorClicks;
 	}
 
-		/*public void ProporcionarCartas(){
-			if (numCartas % 2 == 0) {
-				if (numCartas % 6 == 0) {
-					ancho = 6;
-					alto=numCartas / 6;
-				}
-	
-				Crear ();
-	
-			} else {
-				print ("Numero de cartas debe ser par");
-			}
-	
-		}*/
+		
 }

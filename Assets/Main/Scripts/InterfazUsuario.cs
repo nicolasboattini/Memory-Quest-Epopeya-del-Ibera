@@ -9,36 +9,26 @@ public class InterfazUsuario : MonoBehaviour {
     public List<Carta> cartas;
 	public GameObject menu;
 	public GameObject menuGanador;
-     public GameObject menuPerdedor;
-	public Text textoMenuGanador;
-	public Slider sliderDif;
-	public Text textoDificultad;
+    public GameObject menuPerdedor;
+	public Text textoMenuGanador;	
     public GameObject errorPanel;
-
     public bool errorShown = false;
 	public bool menuMostrado;
 	public bool menuMostradoGanador;
     public bool menuMostradoPerdedor;
-	public int dificultad;
-
-    public string temp;
-
-    public Sprite[] mySprites;
-    public SpriteRenderer spriteRenderer;
-
+    public Sprite[] fondos;
+    public SpriteRenderer fondoRender;
     private bool pausado = false;
     private float tiempoPausa = 0f;
     private float tiempoInicio = 0f;   
     private int SegundosCronometro = 0;
     private TimeSpan tiempo;
-    private bool inicioPresionado = false;
-    
+    private bool inicioPresionado = false;    
     public Text cronometro;
-    public Button botonInicio;    
+    
 
-    void Start(){
-		CambiarDificultad ();
-        botonInicio.onClick.AddListener(ActivarCronometro);
+    void Start(){		
+        
 	}
 
 	public void MostrarMenu(){
@@ -81,18 +71,11 @@ public class InterfazUsuario : MonoBehaviour {
 		menuPerdedor.SetActive (false);
 		menuMostradoPerdedor = false;
 	}
-    public void AgregarCarta(Carta carta)
-{
-    if (!cartas.Contains(carta))
-    {
+    public void AgregarCarta(Carta carta) {
+        if (!cartas.Contains(carta)) {
         cartas.Add(carta);
-    }
-}
-	public void CambiarDificultad(){
-		dificultad = (int) sliderDif.value*2;
-		textoDificultad.text  = "Dificultad: " + dificultad ;
-	}
-       
+        }
+    }       
     public void ActivarCronometro()
     {
         pausado = false;
@@ -180,11 +163,11 @@ public class InterfazUsuario : MonoBehaviour {
     }
     public void ChangeSprite(int i)
     {
-        spriteRenderer.sprite = mySprites[i];
+        fondoRender.sprite = fondos[i];
     }
     public void Change()
     {
-        ChangeSprite(UnityEngine.Random.Range(0, mySprites.Length));
+        ChangeSprite(UnityEngine.Random.Range(0, fondos.Length));
 
     }
 

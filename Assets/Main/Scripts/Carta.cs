@@ -68,4 +68,6 @@ public class Carta : MonoBehaviour {
 		crearCartas.GetComponent<CrearCartas> ().sePuedeMostrar = true;
 	}
 
+    
+
 }
