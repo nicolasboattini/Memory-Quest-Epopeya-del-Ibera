@@ -62,19 +62,23 @@ public class CrearCartas : MonoBehaviour {
 
     public void SetNivelFacil()
 	{
-		nivel = 2;
-	}
+		//nivel = 2;
+        nivel = 4;
+    }
     public void SetNivelMedio()
     {
-        nivel = 4;
+        //nivel = 4;
+        nivel = 6;
     }
     public void SetNivelDificil()
     {
-        nivel = 6;
-    }    
-    public void CrearParam(){
-        
-        switch (nivel){
+        //nivel = 6;
+        nivel = 8;
+    }
+    public void CrearParam() {
+
+        //SWTICH HORIZONTAL
+        /*switch (nivel){
             case 2:
                 Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
                 rows = 2;
@@ -90,12 +94,34 @@ public class CrearCartas : MonoBehaviour {
                 cols = 6;
                 Camera.main.transform.position = new Vector3(3.847f, 7.53f, 3.1f);
                 break;
+        }*/
+
+        //SWITCH VERTICAL
+        switch (nivel)
+        {
+            case 4:
+                rows = 3;
+                cols = 2;
+                Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
+                break;
+
+            case 6:
+                rows = 6;
+                cols = 3;
+                Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
+                break;
+
+            case 8:
+                rows = 6;
+                cols = 4;
+                Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
+                break;
         }
         int cont = 0;
         for (int i = 0; i < rows; i++){
             for (int x = 0; x < cols; x++){
                 float factor = 9.0f / nivel;
-                Vector3 posicionTemp = new Vector3(x * factor, 0, i * factor);
+                Vector3 posicionTemp = new Vector3((float)(x * (factor - 0.2)), 0, (float)(i * (factor - 0.2)));
                 GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
                 Quaternion.Euler(new Vector3(0, 180, 0)));
                 cartaTemp.transform.localScale *= factor;
@@ -168,7 +194,7 @@ public class CrearCartas : MonoBehaviour {
                 }
                 resultSound.clip = m_correctSound;
                 resultSound.Play();
-                numParejasEncontradas++;
+                numParejasEncontradas++;        
 				if (numParejasEncontradas == cartas.Count / 2) {
 					print ("Enhorabuena! Has encontrado todas las parejas!");
 					interfazUsuario.MostrarMenuGanador ();
