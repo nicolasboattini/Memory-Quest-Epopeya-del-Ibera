@@ -1483,8 +1483,8 @@ MonoBehaviour:
   fondo: {fileID: 1975345491}
   tablero: {fileID: 967103667}
   resultSound: {fileID: 810621263}
-  m_correctSound: {fileID: 8300000, guid: f7ab86b85b6b29048ab7e17c226e4a56, type: 3}
-  m_incorrectSound: {fileID: 8300000, guid: 67342c5f0894cf24ca8533e52fa8aa94, type: 3}
+  m_correctSound: {fileID: 8300000, guid: 5fcb431d95d23bd449975e0f47850dce, type: 3}
+  m_incorrectSound: {fileID: 8300000, guid: 6d13eaa85fdd034449a1b4370b3b5c25, type: 3}
 --- !u!4 &879109827
 Transform:
   m_ObjectHideFlags: 0
@@ -2526,7 +2526,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e1833c657f38c474c8e4b72625204453, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b8535f14613b5a41b537fc9fc80e662, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1

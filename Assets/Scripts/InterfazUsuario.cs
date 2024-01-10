@@ -105,7 +105,7 @@ public class InterfazUsuario : MonoBehaviour {
             int tiempoLimite;
             tiempo = new TimeSpan(0, 0, SegundosCronometro);
             //SWITCH HORIZONTAL
-            /*switch (tempLevel){
+            switch (tempLevel){
                 case 2:
                     tiempoRestante = 30 - SegundosCronometro;
                     if (tiempoRestante <= 0)
@@ -135,9 +135,10 @@ public class InterfazUsuario : MonoBehaviour {
                 default:
                     tiempoRestante = 0;
                     break;
-            }*/
+            }
 
             //SWITCH VERTICAL
+            /*
             switch (tempLevel)
             {
                 case 4:
@@ -168,7 +169,7 @@ public class InterfazUsuario : MonoBehaviour {
                 default:
                     tiempoRestante = 0;
                     break;
-            }
+            }*/
             // Convertir el tiempo restante a minutos y segundos
             int minutos = tiempoRestante / 60;
             int segundos = tiempoRestante % 60;

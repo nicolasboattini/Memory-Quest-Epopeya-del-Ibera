@@ -77,7 +77,7 @@ public class CrearCartas : MonoBehaviour {
     public void CrearParam() {
 
         //SWTICH HORIZONTAL
-        /*switch (nivel){
+        switch (nivel){
             case 2:
                 Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
                 rows = 2;
@@ -93,9 +93,10 @@ public class CrearCartas : MonoBehaviour {
                 cols = 6;
                 Camera.main.transform.position = new Vector3(3.847f, 7.53f, 3.1f);
                 break;
-        }*/
+        }
 
         //SWITCH VERTICAL
+        /*
         switch (nivel)
         {
             case 4:
@@ -115,7 +116,7 @@ public class CrearCartas : MonoBehaviour {
                 cols = 4;
                 Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
                 break;
-        }
+        }*/
         int cont = 0;
         for (int i = 0; i < rows; i++){
             for (int x = 0; x < cols; x++){
