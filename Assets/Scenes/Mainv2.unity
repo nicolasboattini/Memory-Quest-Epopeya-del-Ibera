@@ -1476,6 +1476,7 @@ MonoBehaviour:
   textoContadorIntentos: {fileID: 43052147}
   CartaMostrada: {fileID: 0}
   sePuedeMostrar: 1
+  hor: 1
   interfazUsuario: {fileID: 879109828}
   numParejasEncontradas: 0
   nivel: 0
@@ -1536,6 +1537,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: de19c440f1665314a93ab972180c6519, type: 3}
   fondoRender: {fileID: 1975345492}
   cronometro: {fileID: 1658694661}
+  hor: 1
 --- !u!114 &879109829
 MonoBehaviour:
   m_ObjectHideFlags: 0

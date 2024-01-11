@@ -24,6 +24,7 @@ public class InterfazUsuario : MonoBehaviour {
     private TimeSpan tiempo;
     private bool inicioPresionado = false;    
     public Text cronometro;
+    public bool hor;
     
 
     void Start(){		
@@ -104,72 +105,84 @@ public class InterfazUsuario : MonoBehaviour {
             int tiempoRestante;
             int tiempoLimite;
             tiempo = new TimeSpan(0, 0, SegundosCronometro);
-            //SWITCH HORIZONTAL
-            switch (tempLevel){
-                case 2:
-                    tiempoRestante = 30 - SegundosCronometro;
-                    if (tiempoRestante <= 0)
-                    {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();                           
-                    }
-                    break;
-                case 4:
-                    tiempoLimite = (1 * 60 + 15); // 1 minuto y 15 segundos
-                    tiempoRestante = tiempoLimite - SegundosCronometro;
-                    if (tiempoRestante <= 0)
-                    {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();
-                    }
-                   break;
-                case 6:
-                    tiempoLimite = (1 * 60 + 45); // 1 minuto y 45 segundos
-                    tiempoRestante = tiempoLimite - SegundosCronometro;
-                    if (tiempoRestante <= 0)
-                    {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();
-                    }
-                    break;
-                default:
-                    tiempoRestante = 0;
-                    break;
-            }
 
-            //SWITCH VERTICAL
-            /*
-            switch (tempLevel)
+            switch (hor)
             {
-                case 4:
-                    tiempoRestante = 30 - SegundosCronometro;
-                    if (tiempoRestante <= 0)
+                case true:
+                    //SWITCH HORIZONTAL
+                    switch (tempLevel)
                     {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();
+                        case 2:
+                            tiempoRestante = 30 - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        case 4:
+                            tiempoLimite = (1 * 60 + 15); // 1 minuto y 15 segundos
+                            tiempoRestante = tiempoLimite - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        case 6:
+                            tiempoLimite = (1 * 60 + 45); // 1 minuto y 45 segundos
+                            tiempoRestante = tiempoLimite - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        default:
+                            tiempoRestante = 0;
+                            break;
                     }
                     break;
-                case 6:
-                    tiempoRestante = 45 - SegundosCronometro;
-                    if (tiempoRestante <= 0)
+
+                case false:
+                    //SWITCH VERTICAL                    
+                    switch (tempLevel)
                     {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();
+                        case 4:
+                            tiempoRestante = 30 - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        case 6:
+                            tiempoRestante = 45 - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        case 8:
+                            tiempoLimite = (1 * 60 + 15); // 1 minuto y 15 segundos
+                            tiempoRestante = tiempoLimite - SegundosCronometro;
+                            if (tiempoRestante <= 0)
+                            {
+                                tiempoRestante = 0;
+                                MostrarMenuPerdedor();
+                            }
+                            break;
+                        default:
+                            tiempoRestante = 0;
+                            break;
                     }
                     break;
-                case 8:
-                    tiempoLimite = (1 * 60 + 15); // 1 minuto y 15 segundos
-                    tiempoRestante = tiempoLimite - SegundosCronometro;
-                    if (tiempoRestante <= 0)
-                    {
-                        tiempoRestante = 0;
-                        MostrarMenuPerdedor();
-                    }
-                    break;
-                default:
-                    tiempoRestante = 0;
-                    break;
-            }*/
+
+            }
+            
+
+            
             // Convertir el tiempo restante a minutos y segundos
             int minutos = tiempoRestante / 60;
             int segundos = tiempoRestante % 60;

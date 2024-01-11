@@ -17,6 +17,7 @@ public class CrearCartas : MonoBehaviour {
 
 	public Carta CartaMostrada;
 	public bool sePuedeMostrar = true;
+    public bool hor;
 
 	public InterfazUsuario interfazUsuario;
 
@@ -62,62 +63,72 @@ public class CrearCartas : MonoBehaviour {
     public void SetNivelFacil()
 	{
 		//nivel = 2;
-        nivel = 4;
+        //nivel = 4;
+        nivel = hor ? 2 : 4;
     }
     public void SetNivelMedio()
     {
         //nivel = 4;
-        nivel = 6;
+        //nivel = 6;
+        nivel = hor ? 4 : 6;
     }
     public void SetNivelDificil()
     {
         //nivel = 6;
-        nivel = 8;
+        //nivel = 8;
+        nivel = hor ? 6 : 8;
     }
     public void CrearParam() {
 
-        //SWTICH HORIZONTAL
-        switch (nivel){
-            case 2:
-                Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
-                rows = 2;
-                cols = 3;
-                break;
-            case 4:
-                rows = 4;
-                cols = 5;    
-                Camera.main.transform.position = new Vector3(4.6f, 8.8f, 3.4f);
-                break;
-            case 6:
-                rows = 5;
-                cols = 6;
-                Camera.main.transform.position = new Vector3(3.847f, 7.53f, 3.1f);
-                break;
-        }
-
-        //SWITCH VERTICAL
-        /*
-        switch (nivel)
+        switch (hor)
         {
-            case 4:
-                rows = 3;
-                cols = 2;
-                Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
+            case true:
+                //SWTICH HORIZONTAL
+                switch (nivel)
+                {
+                    case 2:
+                        Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
+                        rows = 2;
+                        cols = 3;
+                        break;
+                    case 4:
+                        rows = 4;
+                        cols = 5;
+                        Camera.main.transform.position = new Vector3(4.22f, 8.8f, 3.4f);
+                        break;
+                    case 6:
+                        rows = 5;
+                        cols = 6;
+                        Camera.main.transform.position = new Vector3(3.36f, 6.68f, 2.61f);
+                        break;
+                }
                 break;
 
-            case 6:
-                rows = 6;
-                cols = 3;
-                Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
-                break;
+            case false:
+                //SWITCH VERTICAL                
+                switch (nivel)
+                {
+                    case 4:
+                        rows = 3;
+                        cols = 2;
+                        Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
+                        break;
 
-            case 8:
-                rows = 6;
-                cols = 4;
-                Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
-                break;
-        }*/
-        int cont = 0;
+                    case 6:
+                        rows = 6;
+                        cols = 3;
+                        Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
+                        break;
+
+                    case 8:
+                        rows = 6;
+                        cols = 4;
+                        Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
+                        break;
+                }
+                        break;
+                }                
+                int cont = 0;
         for (int i = 0; i < rows; i++){
             for (int x = 0; x < cols; x++){
                 float factor = 9.0f / nivel;
