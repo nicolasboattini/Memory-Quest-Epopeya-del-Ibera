@@ -32,6 +32,8 @@ public class CrearCartas : MonoBehaviour {
     public AudioClip m_correctSound = null;
     public AudioClip m_incorrectSound = null;
 
+    public bool carna;
+
     public void Reiniciar(){
 
         if (nivel == 0)
@@ -78,6 +80,7 @@ public class CrearCartas : MonoBehaviour {
         //nivel = 8;
         nivel = hor ? 6 : 8;
     }
+
     public void CrearParam() {
 
         switch (hor)
@@ -117,7 +120,14 @@ public class CrearCartas : MonoBehaviour {
                     case 6:
                         rows = 6;
                         cols = 3;
-                        Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
+                        if (carna)
+                        {
+                            Camera.main.transform.position = new Vector3(1.54f, 7.78000021f, 3.77000003f);
+                        } else
+                        {
+                            Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
+                        }
+                        
                         break;
 
                     case 8:
@@ -132,7 +142,8 @@ public class CrearCartas : MonoBehaviour {
         for (int i = 0; i < rows; i++){
             for (int x = 0; x < cols; x++){
                 float factor = 9.0f / nivel;
-                Vector3 posicionTemp = new Vector3((float)(x * (factor - 0.2)), 0, (float)(i * (factor - 0.2)));
+                float alter = (float)(carna ? 0.05 : -0.2); 
+                Vector3 posicionTemp = new Vector3((float)(x * (factor + alter)), 0, (float)(i * (factor - 0.2)));
                 GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
                 Quaternion.Euler(new Vector3(0, 180, 0)));
                 cartaTemp.transform.localScale *= factor;
@@ -198,7 +209,9 @@ public class CrearCartas : MonoBehaviour {
 			//contadorClicks++; Contador de Intentos
 			//ActualizarUI (); 
 			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
-				print ("Enhorabuena! Has encontrado una pareja!");
+                Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
+
+                print ("Enhorabuena! Has encontrado una pareja!");
                 if (resultSound.isPlaying)
                 {
                     resultSound.Stop();

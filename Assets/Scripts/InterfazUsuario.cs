@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InterfazUsuario : MonoBehaviour {
@@ -227,11 +228,17 @@ public class InterfazUsuario : MonoBehaviour {
 
     public void GameExit()
     {
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #else
-            Application.Quit();
-    #endif
+        SceneManager.LoadScene("Menu");
+        /*#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif*/
+    }
+
+    public void backMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 
 }
