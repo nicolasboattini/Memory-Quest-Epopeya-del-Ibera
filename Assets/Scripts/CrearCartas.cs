@@ -209,7 +209,9 @@ public class CrearCartas : MonoBehaviour {
 			//contadorClicks++; Contador de Intentos
 			//ActualizarUI (); 
 			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
-				print ("Enhorabuena! Has encontrado una pareja!");
+                Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
+
+                print ("Enhorabuena! Has encontrado una pareja!");
                 if (resultSound.isPlaying)
                 {
                     resultSound.Stop();
