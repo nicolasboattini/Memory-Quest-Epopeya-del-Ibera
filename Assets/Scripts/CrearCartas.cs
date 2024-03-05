@@ -4,35 +4,38 @@ using UnityEngine.UI;
 
 public class CrearCartas : MonoBehaviour {
 
-	public GameObject CartaPrefab;	
+    public GameObject CartaPrefab;
     public int rows;
     public int cols;
-	public Transform CartasParent;
-	private List<GameObject> cartas = new List<GameObject> ();
-    	
-	public Texture2D[] texturas;
+    public Transform CartasParent;
+    private List<GameObject> cartas = new List<GameObject>();
 
-	public int contadorClicks = 1;
-	public Text textoContadorIntentos;
+    public Texture2D[] texturas;
 
-	public Carta CartaMostrada;
-	public bool sePuedeMostrar = true;
+    public int contadorClicks = 1;
+    public Text textoContadorIntentos;
+
+    public Carta CartaMostrada;
+    public bool sePuedeMostrar = true;
     public bool hor;
 
-	public InterfazUsuario interfazUsuario;
+    public InterfazUsuario interfazUsuario;
 
-	public int numParejasEncontradas;
-	public int nivel;
+    public int numParejasEncontradas;
+    public int nivel;
 
     public Camera camara;
+
     public GameObject fondo;
     public GameObject tablero;
-
+    public GameObject[] infoPanels;
+    public GameObject btnClosePanel;
     public AudioSource resultSound;
     public AudioClip m_correctSound = null;
     public AudioClip m_incorrectSound = null;
 
     public bool carna;
+
 
     public void Reiniciar(){
 
@@ -205,12 +208,11 @@ public class CrearCartas : MonoBehaviour {
 	public void HacerClick(Carta _carta){
 		if (CartaMostrada == null) {
 			CartaMostrada = _carta;
-		} else {
+		} 
+        else {
 			//contadorClicks++; Contador de Intentos
 			//ActualizarUI (); 
 			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
-                Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
-
                 print ("Enhorabuena! Has encontrado una pareja!");
                 if (resultSound.isPlaying)
                 {
@@ -222,7 +224,22 @@ public class CrearCartas : MonoBehaviour {
 				if (numParejasEncontradas == cartas.Count / 2) {
 					print ("Enhorabuena! Has encontrado todas las parejas!");
 					interfazUsuario.MostrarMenuGanador ();
-				}
+				} else
+                {
+                    //Mostrar info de carta y pausar
+                    Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
+                    string panelName = _carta.GetComponent<Carta>().texturaAnverso.name;
+                    for (int i = 0; i < infoPanels.Length; i++)
+                    {
+                        if (infoPanels[i].name == panelName)
+                        {
+                            interfazUsuario.PausarCronometro();
+                            infoPanels[i].gameObject.SetActive(true);
+                            btnClosePanel.gameObject.SetActive(true);
+                        }    
+                    }
+
+                }
 
 			} else {
 				if (resultSound.isPlaying)
@@ -242,6 +259,19 @@ public class CrearCartas : MonoBehaviour {
 		}
 
 	}
+
+    public void CloseInfoPanel()
+    {
+        for (int i = 0;i < infoPanels.Length;i++)
+        {
+            if (infoPanels[i].activeSelf)
+            {
+                infoPanels[i].SetActive(false);
+                btnClosePanel.SetActive(false);
+                interfazUsuario.ActivarCronometro ();
+            }
+        }
+    }
 
 	public bool CompararCartas(GameObject carta1, GameObject carta2){
 		bool resultado;
