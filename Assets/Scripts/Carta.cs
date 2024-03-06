@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Carta : MonoBehaviour {
 	
-	public int idCarta=0;
-	public Vector3  posicionOriginal;
-	public Texture2D texturaAnverso;
-	public Texture2D  texturaReverso;
 
+
+	private bool _interactiva = true;
+	public bool Mostrando;
+	public bool playable = false;
 	public float tiempoDelay = 2;
 	public GameObject  crearCartas;
-	public bool Mostrando;
-
 	public GameObject  interfazUsuario;
-	private bool _interactiva = true;
+	public int idCarta=0;
+	public Texture2D  texturaReverso;
+	public Texture2D texturaAnverso;
+	public Vector3  posicionOriginal;
     public bool Interactiva
     {
         get { return _interactiva; }
@@ -30,13 +32,20 @@ public class Carta : MonoBehaviour {
         if (interfazUsuario != null)
         {
             interfazUsuario.AgregarCarta(this);
+            //Logica para Mostrar las cartas por un breve tiempo 
+            Debug.Log("Por enrtar a delay");
+            StartCoroutine(Delay());
         }
-		EsconderCarta ();
+		
+        //StartCoroutine(Delay()); //Delay para mostrar las cartas
+        //EsconderCarta (); //Se esconden las cartas y se empieza el juego		
 	}
 
 
 	void OnMouseDown(){
 		if (!interfazUsuario.GetComponent<InterfazUsuario>().menuMostrado) {
+			Debug.Log("Menu mostrado: " + !interfazUsuario.GetComponent<InterfazUsuario>().menuMostrado + " Entrando a mostarCarta");
+
 			MostrarCarta ();
 		}
 	}
@@ -45,9 +54,16 @@ public class Carta : MonoBehaviour {
 		texturaAnverso  = _textura;
 
 	}
-
+	public void ForceMostrarCarta()
+	{
+        Debug.Log("Mostrando Carta Forzado");
+        Mostrando = true;
+        GetComponent<MeshRenderer>().material.mainTexture = texturaAnverso;
+        //Invoke ("EsconderCarta", tiempoDelay);
+        crearCartas.GetComponent<CrearCartas>().HacerClick(this);
+    }
 	public void MostrarCarta(){
-		if (Interactiva && !Mostrando && crearCartas.GetComponent<CrearCartas>().sePuedeMostrar) {
+		if (Interactiva && !Mostrando && crearCartas.GetComponent<CrearCartas>().sePuedeMostrar) {			
 			Mostrando = true;
 			GetComponent<MeshRenderer> ().material.mainTexture = texturaAnverso;
 			//Invoke ("EsconderCarta", tiempoDelay);
@@ -65,7 +81,26 @@ public class Carta : MonoBehaviour {
 		Mostrando = false;
 		crearCartas.GetComponent<CrearCartas> ().sePuedeMostrar = true;
 	}
+    IEnumerator Delay()
+    {
+        interfazUsuario.GetComponent<InterfazUsuario>().mostrandoCartasInicialmente = true;
+        // Espera a que todas las cartas estén listas antes de mostrarlas
+        yield return new WaitUntil(() => interfazUsuario.GetComponent<InterfazUsuario>().cartas.Count == interfazUsuario.GetComponent<InterfazUsuario>().crearCartas.nivel);
 
-    
+        // Mostrar todas las cartas simultáneamente
+        foreach (Carta carta in interfazUsuario.GetComponent<InterfazUsuario>().cartas)
+        {	
+            carta.ForceMostrarCarta();
+        }
+
+        // Esconder las cartas después de un breve periodo de tiempo
+        yield return new WaitForSeconds(tiempoDelay);
+        foreach (Carta carta in interfazUsuario.GetComponent<InterfazUsuario>().cartas)
+        {
+            carta.EsconderCarta();
+        }
+        interfazUsuario.GetComponent<InterfazUsuario>().mostrandoCartasInicialmente = false;
+    }
+
 
 }

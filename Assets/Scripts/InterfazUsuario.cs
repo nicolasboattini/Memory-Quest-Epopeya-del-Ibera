@@ -5,27 +5,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InterfazUsuario : MonoBehaviour {
-    public CrearCartas crearCartas;    
-    public List<Carta> cartas;
-	public GameObject menu;
-	public GameObject menuGanador;
-    public GameObject menuPerdedor;
-	public Text textoMenuGanador;	
-    public GameObject errorPanel;
+    private bool inicioPresionado = false;    
+    private bool pausado = false;
+    private float tiempoInicio = 0f;   
+    private float tiempoPausa = 0f;
+    private int SegundosCronometro = 0;
+    private TimeSpan tiempo;
     public bool errorShown = false;
+    public bool hor;
 	public bool menuMostrado;
 	public bool menuMostradoGanador;
     public bool menuMostradoPerdedor;
+    public bool mostrandoCartasInicialmente = false;
+    public CrearCartas crearCartas;    
+    public GameObject errorPanel;
+	public GameObject menu;
+	public GameObject menuGanador;
+    public GameObject menuPerdedor;
+    public List<Carta> cartas;
     public Sprite[] fondos;
     public SpriteRenderer fondoRender;
-    private bool pausado = false;
-    private float tiempoPausa = 0f;
-    private float tiempoInicio = 0f;   
-    private int SegundosCronometro = 0;
-    private TimeSpan tiempo;
-    private bool inicioPresionado = false;    
     public Text cronometro;
-    public bool hor;
+	public Text textoMenuGanador;	
     
 
     void Start(){		
@@ -224,6 +225,13 @@ public class InterfazUsuario : MonoBehaviour {
         errorShown = !errorShown;
         errorPanel.SetActive(errorShown);
         
+    }
+    public void MostrarTodasLasCartas()
+    {
+        foreach (Carta carta in cartas)
+        {
+            carta.ForceMostrarCarta();
+        }
     }
 
     public void GameExit()

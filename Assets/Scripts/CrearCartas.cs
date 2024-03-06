@@ -3,42 +3,32 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CrearCartas : MonoBehaviour {
-
-    public GameObject CartaPrefab;
-    public int rows;
-    public int cols;
-    public Transform CartasParent;
     private List<GameObject> cartas = new List<GameObject>();
-
-    public Texture2D[] texturas;
-
-    public int contadorClicks = 1;
-    public Text textoContadorIntentos;
-
-    public Carta CartaMostrada;
-    public bool sePuedeMostrar = true;
+    public AudioClip m_correctSound = null;
+    public AudioClip m_incorrectSound = null;
+    public AudioSource resultSound;
+    public bool carna;
     public bool hor;
-
-    public InterfazUsuario interfazUsuario;
-
-    public int numParejasEncontradas;
-    public int nivel;
-
+    public bool sePuedeMostrar = true;
+    public bool turbo = true;
     public Camera camara;
-
+    public Carta CartaMostrada;
+    public GameObject btnClosePanel;
+    public GameObject CartaPrefab;
     public GameObject fondo;
     public GameObject tablero;
     public GameObject[] infoPanels;
-    public GameObject btnClosePanel;
-    public AudioSource resultSound;
-    public AudioClip m_correctSound = null;
-    public AudioClip m_incorrectSound = null;
-
-    public bool carna;
-
-
+    public int cols;
+    public int contadorClicks = 1;
+    public int nivel;
+    public int numParejasEncontradas;
+    public int rows;
+    public InterfazUsuario interfazUsuario;
+    public Text textoContadorIntentos;
+    public Texture2D[] texturas;
+    public Transform CartasParent;
     public void Reiniciar(){
-
+        interfazUsuario.mostrandoCartasInicialmente = false;
         if (nivel == 0)
         {
             print("Seleccione dificultad");
@@ -206,59 +196,82 @@ public class CrearCartas : MonoBehaviour {
 	}
 
 	public void HacerClick(Carta _carta){
-		if (CartaMostrada == null) {
-			CartaMostrada = _carta;
-		} 
-        else {
-			//contadorClicks++; Contador de Intentos
-			//ActualizarUI (); 
-			if (CompararCartas (_carta.gameObject, CartaMostrada.gameObject)) {
-                print ("Enhorabuena! Has encontrado una pareja!");
-                if (resultSound.isPlaying)
+        if(!interfazUsuario.mostrandoCartasInicialmente)
+        {
+            if (CartaMostrada == null)
+            {
+                CartaMostrada = _carta;
+            }
+            else
+            {
+                //contadorClicks++; Contador de Intentos
+                //ActualizarUI (); 
+                if (CompararCartas(_carta.gameObject, CartaMostrada.gameObject))
                 {
-                    resultSound.Stop();
-                }
-                resultSound.clip = m_correctSound;
-                resultSound.Play();
-                numParejasEncontradas++;        
-				if (numParejasEncontradas == cartas.Count / 2) {
-					print ("Enhorabuena! Has encontrado todas las parejas!");
-					interfazUsuario.MostrarMenuGanador ();
-				} else
-                {
-                    //Mostrar info de carta y pausar
-                    Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
-                    string panelName = _carta.GetComponent<Carta>().texturaAnverso.name;
-                    for (int i = 0; i < infoPanels.Length; i++)
+                    print("Enhorabuena! Has encontrado una pareja!");
+                    if (resultSound.isPlaying)
                     {
-                        if (infoPanels[i].name == panelName)
+                        resultSound.Stop();
+                    }
+                    resultSound.clip = m_correctSound;
+                    resultSound.Play();
+                    numParejasEncontradas++;
+                    if (numParejasEncontradas == cartas.Count / 2)
+                    {
+                        print("Enhorabuena! Has encontrado todas las parejas!");
+                        interfazUsuario.MostrarMenuGanador();
+                        cartas.Clear();
+                        GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
+                        for (int i = 0; i < cartasEli.Length; i++)
                         {
-                            interfazUsuario.PausarCronometro();
-                            infoPanels[i].gameObject.SetActive(true);
-                            btnClosePanel.gameObject.SetActive(true);
-                        }    
+                            Destroy(cartasEli[i]);
+                        }
+                    }
+                    else
+                    {
+                        //Mostrar info de carta y pausar
+                        Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
+                        string panelName = _carta.GetComponent<Carta>().texturaAnverso.name;
+                        for (int i = 0; i < infoPanels.Length; i++)
+                        {
+                            if (infoPanels[i].name == panelName && turbo)
+                            {
+                                interfazUsuario.PausarCronometro();
+                                infoPanels[i].gameObject.SetActive(true);
+                                btnClosePanel.gameObject.SetActive(true);
+                            }
+                        }
+
                     }
 
                 }
-
-			} else {
-				if (resultSound.isPlaying)
+                else
                 {
-                    resultSound.Stop();
+                    if (resultSound.isPlaying)
+                    {
+                        resultSound.Stop();
+                    }
+                    resultSound.clip = m_incorrectSound;
+                    resultSound.Play();
+                    _carta.EsconderCarta();
+                    CartaMostrada.EsconderCarta();
+                    contadorClicks++; //Contador de errores
+                    ActualizarUI();
+                    print("La Pareja No Coincide");
                 }
-                resultSound.clip = m_incorrectSound;
-                resultSound.Play();
-				_carta.EsconderCarta ();
-				CartaMostrada.EsconderCarta();
-                contadorClicks++; //Contador de errores
-                ActualizarUI();
-                print("La Pareja No Coincide");
-            }
-			CartaMostrada = null;
+                CartaMostrada = null;
 
-		}
+            }
+        }
+
+        
 
 	}
+    public void TurboSwap()
+    {
+        turbo = !turbo;
+    }
+
 
     public void CloseInfoPanel()
     {
