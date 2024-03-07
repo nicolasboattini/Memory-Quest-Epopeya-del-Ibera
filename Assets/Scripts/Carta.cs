@@ -27,14 +27,13 @@ public class Carta : MonoBehaviour {
 		interfazUsuario = GameObject.Find ("Scripts");
 	}
 
-	void Start(){
-		InterfazUsuario interfazUsuario = crearCartas.GetComponent<InterfazUsuario>();
-        if (interfazUsuario != null)
-        {
+	public void Start(){
+        InterfazUsuario interfazUsuario = crearCartas.GetComponent<InterfazUsuario>();
+        if (interfazUsuario != null)        {
             interfazUsuario.AgregarCarta(this);
             //Logica para Mostrar las cartas por un breve tiempo 
-            Debug.Log("Por enrtar a delay");
-            StartCoroutine(Delay());
+            //Debug.Log("Por enrtar a delay");
+            //StartCoroutine(Delay());
         }
 		
         //StartCoroutine(Delay()); //Delay para mostrar las cartas

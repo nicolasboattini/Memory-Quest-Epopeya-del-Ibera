@@ -1603,10 +1603,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682b94e631987e74189cd9eff6e30a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_correctSound: {fileID: 8300000, guid: 5fcb431d95d23bd449975e0f47850dce, type: 3}
+  m_incorrectSound: {fileID: 8300000, guid: 6d13eaa85fdd034449a1b4370b3b5c25, type: 3}
+  resultSound: {fileID: 810621263}
+  carna: 1
+  hor: 0
+  sePuedeMostrar: 1
+  turbo: 1
+  camara: {fileID: 2033186620}
+  CartaMostrada: {fileID: 0}
+  btnClosePanel: {fileID: 169033496}
   CartaPrefab: {fileID: 1031706373733912, guid: 2db7f15527af3244ba477df549329b2c, type: 3}
-  rows: 0
+  fondo: {fileID: 1975345491}
+  tablero: {fileID: 967103667}
+  infoPanels:
+  - {fileID: 770389111}
+  - {fileID: 90951847}
+  - {fileID: 225347423}
   cols: 0
-  CartasParent: {fileID: 788094606}
+  contadorClicks: 1
+  nivel: 0
+  numParejasEncontradas: 0
+  rows: 0
+  interfazUsuario: {fileID: 879109828}
+  textoContadorIntentos: {fileID: 43052147}
   texturas:
   - {fileID: 2800000, guid: 755bd6a4adb78974eab1cc09ef3b36e3, type: 3}
   - {fileID: 2800000, guid: 3e93acbb3bfd51b4c9b2c224c8153cf1, type: 3}
@@ -1617,26 +1637,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 12eeb9ac55789e148bfa84ccec845383, type: 3}
   - {fileID: 2800000, guid: f71c64870f2dff04297c5191cc06dc62, type: 3}
   - {fileID: 2800000, guid: 8b8b02942af4228419045d6c14a54754, type: 3}
-  contadorClicks: 1
-  textoContadorIntentos: {fileID: 43052147}
-  CartaMostrada: {fileID: 0}
-  sePuedeMostrar: 1
-  hor: 0
-  interfazUsuario: {fileID: 879109828}
-  numParejasEncontradas: 0
-  nivel: 0
-  camara: {fileID: 2033186620}
-  fondo: {fileID: 1975345491}
-  tablero: {fileID: 967103667}
-  infoPanels:
-  - {fileID: 770389111}
-  - {fileID: 90951847}
-  - {fileID: 225347423}
-  btnClosePanel: {fileID: 169033496}
-  resultSound: {fileID: 810621263}
-  m_correctSound: {fileID: 8300000, guid: 5fcb431d95d23bd449975e0f47850dce, type: 3}
-  m_incorrectSound: {fileID: 8300000, guid: 6d13eaa85fdd034449a1b4370b3b5c25, type: 3}
-  carna: 1
+  CartasParent: {fileID: 788094606}
 --- !u!4 &879109827
 Transform:
   m_ObjectHideFlags: 0
@@ -1664,23 +1665,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3065c630052aa4db4b03ef54af4ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crearCartas: {fileID: 879109826}
-  cartas: []
-  menu: {fileID: 1894300363}
-  menuGanador: {fileID: 437151898}
-  menuPerdedor: {fileID: 1706127970}
-  textoMenuGanador: {fileID: 57367660}
-  errorPanel: {fileID: 325227977}
+  timeDelay: 2
   errorShown: 0
+  hor: 0
   menuMostrado: 0
   menuMostradoGanador: 0
   menuMostradoPerdedor: 0
+  mostrandoCartasInicialmente: 0
+  crearCartas: {fileID: 879109826}
+  errorPanel: {fileID: 325227977}
+  menu: {fileID: 1894300363}
+  menuGanador: {fileID: 437151898}
+  menuPerdedor: {fileID: 1706127970}
+  cartas: []
   fondos:
   - {fileID: 21300000, guid: 72d98a9fa54b47a4aa62d1d24f63f68a, type: 3}
   - {fileID: 21300000, guid: 26815fa5639331d448f0eae39416a6e3, type: 3}
   fondoRender: {fileID: 1975345492}
   cronometro: {fileID: 1658694661}
-  hor: 0
+  textoMenuGanador: {fileID: 57367660}
 --- !u!114 &879109829
 MonoBehaviour:
   m_ObjectHideFlags: 0

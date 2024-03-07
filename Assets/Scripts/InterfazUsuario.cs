@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class InterfazUsuario : MonoBehaviour {
     private bool pausado = false;
     private float tiempoInicio = 0f;   
     private float tiempoPausa = 0f;
+    public float timeDelay = 2;
     private int SegundosCronometro = 0;
     private TimeSpan tiempo;
     public bool errorShown = false;
@@ -41,6 +43,7 @@ public class InterfazUsuario : MonoBehaviour {
 	public void EsconderMenu(){
 		menu.SetActive (false);
 		menuMostrado = false;
+        StartCoroutine(mostrarTodasCartasRutina());
 	}
 
 	public void MostrarMenuGanador(){
@@ -65,6 +68,36 @@ public class InterfazUsuario : MonoBehaviour {
 		menuMostradoPerdedor = true;        
         PausarCronometro();
 	}
+    public void MostrarLasCartas()
+    {
+        StartCoroutine(mostrarTodasCartasRutina());
+    }
+    IEnumerator mostrarTodasCartasRutina()
+    {
+        Debug.Log("Entrando a la rutina de muestra");
+        mostrandoCartasInicialmente = true;
+        yield return new WaitForSeconds(1);
+        // Espera a que todas las cartas estén listas antes de mostrarlas
+        //yield return new WaitUntil(() => cartas.Count == crearCartas.nivel);
+        Debug.Log("Mostrando Cartas...");
+        // Mostrar todas las cartas simultáneamente
+        foreach (Carta carta in cartas)
+        {
+            Debug.Log("Mostrando carta: " + carta);
+            carta.ForceMostrarCarta();
+        }
+
+        // Esconder las cartas después de un breve periodo de tiempo
+        yield return new WaitForSeconds(timeDelay);
+        Debug.Log("Escondiendo cartas...");
+        foreach (Carta carta in cartas)
+        {
+            Debug.Log("Escondiendo carta: " + carta);
+            carta.EsconderCarta();
+        }
+        Debug.Log("Saliendo de la rutina de muestra");
+        mostrandoCartasInicialmente = false;
+    }
 	public void EsconderMenuPerdedor(){
         foreach (Carta carta in cartas)
         {
@@ -225,14 +258,7 @@ public class InterfazUsuario : MonoBehaviour {
         errorShown = !errorShown;
         errorPanel.SetActive(errorShown);
         
-    }
-    public void MostrarTodasLasCartas()
-    {
-        foreach (Carta carta in cartas)
-        {
-            carta.ForceMostrarCarta();
-        }
-    }
+    }    
 
     public void GameExit()
     {

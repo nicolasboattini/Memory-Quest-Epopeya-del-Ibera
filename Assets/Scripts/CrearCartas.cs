@@ -196,6 +196,7 @@ public class CrearCartas : MonoBehaviour {
 	}
 
 	public void HacerClick(Carta _carta){
+        Debug.Log("Estado mostrandoCartasInicialmente: " + interfazUsuario.mostrandoCartasInicialmente);
         if(!interfazUsuario.mostrandoCartasInicialmente)
         {
             if (CartaMostrada == null)
