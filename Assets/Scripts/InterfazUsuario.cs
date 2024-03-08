@@ -8,17 +8,20 @@ using UnityEngine.UI;
 public class InterfazUsuario : MonoBehaviour {
     private bool inicioPresionado = false;    
     private bool pausado = false;
+    public bool errorShown = false;
+    public bool hor;
+    public bool menuMostrado;
+    public bool menuMostradoGanador;
+    public bool menuMostradoPerdedor;
+
     private float tiempoInicio = 0f;   
     private float tiempoPausa = 0f;
     public float timeDelay = 2;
+
     private int SegundosCronometro = 0;
+
     private TimeSpan tiempo;
-    public bool errorShown = false;
-    public bool hor;
-	public bool menuMostrado;
-	public bool menuMostradoGanador;
-    public bool menuMostradoPerdedor;
-    public bool mostrandoCartasInicialmente = false;
+    
     public CrearCartas crearCartas;    
     public GameObject errorPanel;
 	public GameObject menu;
@@ -29,23 +32,21 @@ public class InterfazUsuario : MonoBehaviour {
     public SpriteRenderer fondoRender;
     public Text cronometro;
 	public Text textoMenuGanador;	
-    
-
     void Start(){		
         
 	}
-
+    public void MostrarCartas()
+    {
+        StartCoroutine(mostrarTodasCartasRutina());
+    }
 	public void MostrarMenu(){
 		menu.SetActive (true);
 		menuMostrado = true;
 	}
-
 	public void EsconderMenu(){
 		menu.SetActive (false);
-		menuMostrado = false;
-        StartCoroutine(mostrarTodasCartasRutina());
+		menuMostrado = false;        
 	}
-
 	public void MostrarMenuGanador(){
 		menuGanador.SetActive (true);
 		menuMostradoGanador = true;
@@ -54,6 +55,7 @@ public class InterfazUsuario : MonoBehaviour {
         tiempo.Seconds);
         textoMenuGanador.text = "" + temp;
         PausarCronometro();
+        cartas.Clear();
 	}
 	public void EsconderMenuGanador(){
 		menuGanador.SetActive (false);
@@ -67,36 +69,32 @@ public class InterfazUsuario : MonoBehaviour {
 		menuPerdedor.SetActive (true);
 		menuMostradoPerdedor = true;        
         PausarCronometro();
-	}
-    public void MostrarLasCartas()
-    {
-        StartCoroutine(mostrarTodasCartasRutina());
-    }
+        cartas.Clear ();
+	}    
     IEnumerator mostrarTodasCartasRutina()
     {
-        Debug.Log("Entrando a la rutina de muestra");
-        mostrandoCartasInicialmente = true;
+        PausarCronometro ();
         yield return new WaitForSeconds(1);
-        // Espera a que todas las cartas estén listas antes de mostrarlas
-        //yield return new WaitUntil(() => cartas.Count == crearCartas.nivel);
+        cartas[1].PlayFlush(true);
         Debug.Log("Mostrando Cartas...");
         // Mostrar todas las cartas simultáneamente
         foreach (Carta carta in cartas)
         {
-            Debug.Log("Mostrando carta: " + carta);
-            carta.ForceMostrarCarta();
+            carta.ForceMostrar();
+            carta.Interactiva = false;
         }
 
         // Esconder las cartas después de un breve periodo de tiempo
+        
         yield return new WaitForSeconds(timeDelay);
+        cartas[1].PlayFlush(false);
         Debug.Log("Escondiendo cartas...");
         foreach (Carta carta in cartas)
         {
-            Debug.Log("Escondiendo carta: " + carta);
-            carta.EsconderCarta();
+            carta.ForceEsconder();
+            carta.Interactiva = true;
         }
-        Debug.Log("Saliendo de la rutina de muestra");
-        mostrandoCartasInicialmente = false;
+        ActivarCronometro();
     }
 	public void EsconderMenuPerdedor(){
         foreach (Carta carta in cartas)
@@ -117,7 +115,6 @@ public class InterfazUsuario : MonoBehaviour {
         tiempoInicio = Time.time - SegundosCronometro; // Inicializar el tiempo de inicio del cronómetro
         
     }
-
     public void ReiniciarCronometro()
     {   
         SegundosCronometro = 0;
@@ -126,7 +123,6 @@ public class InterfazUsuario : MonoBehaviour {
         tiempoInicio = Time.time;
         
     }
-
     public void ActualizarCronometro(){
         if (inicioPresionado && !pausado){
             if (tiempoPausa != 0)
@@ -215,9 +211,6 @@ public class InterfazUsuario : MonoBehaviour {
                     break;
 
             }
-            
-
-            
             // Convertir el tiempo restante a minutos y segundos
             int minutos = tiempoRestante / 60;
             int segundos = tiempoRestante % 60;
@@ -252,14 +245,12 @@ public class InterfazUsuario : MonoBehaviour {
         ChangeSprite(UnityEngine.Random.Range(0, fondos.Length));
 
     }
-
     public void swapErrorPanel()
     {
         errorShown = !errorShown;
         errorPanel.SetActive(errorShown);
         
     }    
-
     public void GameExit()
     {
         SceneManager.LoadScene("Menu");
@@ -269,10 +260,8 @@ public class InterfazUsuario : MonoBehaviour {
                 Application.Quit();
         #endif*/
     }
-
     public void backMenu()
     {
         SceneManager.LoadScene("Menu");
     }
-
 }

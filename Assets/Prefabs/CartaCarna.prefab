@@ -119,10 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idCarta: 0
-  posicionOriginal: {x: 0, y: 0, z: 0}
-  texturaAnverso: {fileID: 0}
-  texturaReverso: {fileID: 2800000, guid: 6824a415252a4a548a636a8c24f5b1c1, type: 3}
   tiempoDelay: 1
-  crearCartas: {fileID: 0}
   Mostrando: 0
+  playable: 0
+  crearCartas: {fileID: 0}
   interfazUsuario: {fileID: 0}
+  texturaReverso: {fileID: 2800000, guid: 6824a415252a4a548a636a8c24f5b1c1, type: 3}
+  texturaAnverso: {fileID: 0}
+  m_flushSound1: {fileID: 8300000, guid: 47ecb863b4838e248bc190a76a431e01, type: 3}
+  m_flushSound2: {fileID: 8300000, guid: 09dd62d6ad81f6a468a8aaaba7460901, type: 3}
+  flushSound: {fileID: 0}
+  posicionOriginal: {x: 0, y: 0, z: 0}

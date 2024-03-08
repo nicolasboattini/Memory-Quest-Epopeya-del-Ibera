@@ -2,40 +2,50 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CrearCartas : MonoBehaviour {
-    private List<GameObject> cartas = new List<GameObject>();
-    public AudioClip m_correctSound = null;
-    public AudioClip m_incorrectSound = null;
-    public AudioSource resultSound;
+public class CrearCartas : MonoBehaviour {    
     public bool carna;
     public bool hor;
     public bool sePuedeMostrar = true;
     public bool turbo = true;
-    public Camera camara;
-    public Carta CartaMostrada;
-    public GameObject btnClosePanel;
-    public GameObject CartaPrefab;
-    public GameObject fondo;
-    public GameObject tablero;
-    public GameObject[] infoPanels;
+
     public int cols;
     public int contadorClicks = 1;
     public int nivel;
     public int numParejasEncontradas;
     public int rows;
+
+    private List<GameObject> cartas = new List<GameObject>();
     public InterfazUsuario interfazUsuario;
+    public Carta CartaMostrada;
+
+    public AudioClip m_correctSound = null;
+    public AudioClip m_incorrectSound = null;
+    public AudioSource resultSound;
+    
+    public Camera camara;
+    
+    public GameObject btnClosePanel;
+    public GameObject CartaPrefab;
+    public GameObject fondo;
+    public GameObject tablero;
+    public GameObject[] infoPanels;
+    
+    
     public Text textoContadorIntentos;
     public Texture2D[] texturas;
     public Transform CartasParent;
     public void Reiniciar(){
-        interfazUsuario.mostrandoCartasInicialmente = false;
+        interfazUsuario.cartas.Clear();
+        interfazUsuario.cronometro.text = null;
+        //interfazUsuario.mostrandoCartasInicialmente = false;
         if (nivel == 0)
         {
             print("Seleccione dificultad");
             interfazUsuario.swapErrorPanel();
         }
         else
-        {            
+        {          
+            
             cartas.Clear();
             GameObject[] cartasEli = GameObject.FindGameObjectsWithTag("Carta");
             for (int i = 0; i < cartasEli.Length; i++)
@@ -196,9 +206,9 @@ public class CrearCartas : MonoBehaviour {
 	}
 
 	public void HacerClick(Carta _carta){
-        Debug.Log("Estado mostrandoCartasInicialmente: " + interfazUsuario.mostrandoCartasInicialmente);
-        if(!interfazUsuario.mostrandoCartasInicialmente)
-        {
+        //Debug.Log("Estado mostrandoCartasInicialmente: " + interfazUsuario.mostrandoCartasInicialmente);
+        //if(!interfazUsuario.mostrandoCartasInicialmente)
+        //{
             if (CartaMostrada == null)
             {
                 CartaMostrada = _carta;
@@ -237,6 +247,10 @@ public class CrearCartas : MonoBehaviour {
                         {
                             if (infoPanels[i].name == panelName && turbo)
                             {
+                                foreach(Carta carta in interfazUsuario.cartas)
+                                {
+                                carta.Interactiva = false;
+                                }
                                 interfazUsuario.PausarCronometro();
                                 infoPanels[i].gameObject.SetActive(true);
                                 btnClosePanel.gameObject.SetActive(true);
@@ -263,7 +277,7 @@ public class CrearCartas : MonoBehaviour {
                 CartaMostrada = null;
 
             }
-        }
+        //}
 
         
 
@@ -284,6 +298,11 @@ public class CrearCartas : MonoBehaviour {
                 btnClosePanel.SetActive(false);
                 interfazUsuario.ActivarCronometro ();
             }
+        }
+
+        foreach (Carta carta in interfazUsuario.cartas)
+        {
+            carta.Interactiva = true;
         }
     }
 
