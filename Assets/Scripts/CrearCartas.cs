@@ -6,7 +6,7 @@ public class CrearCartas : MonoBehaviour {
     public bool carna;
     public bool hor;
     public bool sePuedeMostrar = true;
-    public bool turbo = true;
+    public bool turbo;
 
     public int cols;
     public int contadorClicks = 1;
@@ -147,8 +147,8 @@ public class CrearCartas : MonoBehaviour {
                 float factor = 9.0f / nivel;
                 float alter = (float)(carna ? 0.05 : -0.2); 
                 Vector3 posicionTemp = new Vector3((float)(x * (factor + alter)), 0, (float)(i * (factor - 0.2)));
-                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp,
-                Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp, Quaternion.Euler(new Vector3(0, 180, 0)));
+                // Generador para UI GameObject cartaTemp = Instantiate(CartaPrefab, CartasParent);
                 cartaTemp.transform.localScale *= factor;
                 cartas.Add(cartaTemp);
                 cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;                

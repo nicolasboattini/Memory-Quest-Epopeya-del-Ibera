@@ -1464,7 +1464,7 @@ MonoBehaviour:
   carna: 0
   hor: 0
   sePuedeMostrar: 1
-  turbo: 1
+  turbo: 0
   cols: 0
   contadorClicks: 1
   nivel: 0

@@ -75,8 +75,7 @@ public class Carta : MonoBehaviour {
 		PlayFlush(false);
 	}
     public void ForceMostrar()
-    {
-		Interactiva = false;
+    {		
         Debug.Log("Mostrando Carta Forzado");
         //Mostrando = true;
         GetComponent<MeshRenderer>().material.mainTexture = texturaAnverso;
