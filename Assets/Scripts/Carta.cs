@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Carta : MonoBehaviour {
@@ -37,12 +38,14 @@ public class Carta : MonoBehaviour {
         }
         EsconderCarta (); //Se esconden las cartas y se empieza el juego		
 	}
-	void OnMouseDown(){
+	public void OnClick (){
+		Debug.Log("Haciendo click");
 		if (!interfazUsuario.GetComponent<InterfazUsuario>().menuMostrado) {
 			Debug.Log("Menu mostrado: " + !interfazUsuario.GetComponent<InterfazUsuario>().menuMostrado + " Entrando a mostarCarta");
 
 			MostrarCarta ();
 		}
+		ForceMostrar ();
 	}
 	public void AsignarTextura(Texture2D  _textura){
 		texturaAnverso  = _textura;
@@ -58,7 +61,7 @@ public class Carta : MonoBehaviour {
 	public void MostrarCarta(){
 		if (Interactiva && !Mostrando && crearCartas.GetComponent<CrearCartas>().sePuedeMostrar) {			
 			Mostrando = true;
-			GetComponent<MeshRenderer> ().material.mainTexture = texturaAnverso;
+			GetComponent<RawImage> ().texture = texturaAnverso;
 			PlayFlush(true);
 			//Invoke ("EsconderCarta", tiempoDelay);
 			crearCartas.GetComponent<CrearCartas> ().HacerClick (this); 
@@ -69,7 +72,7 @@ public class Carta : MonoBehaviour {
 		crearCartas.GetComponent<CrearCartas> ().sePuedeMostrar = false;
 	}
 	void Esconder(){
-		GetComponent<MeshRenderer> ().material.mainTexture  = texturaReverso; 
+        GetComponent<RawImage>().texture = texturaReverso; 
 		Mostrando = false;
 		crearCartas.GetComponent<CrearCartas> ().sePuedeMostrar = true;
 		PlayFlush(false);
@@ -78,13 +81,13 @@ public class Carta : MonoBehaviour {
     {		
         Debug.Log("Mostrando Carta Forzado");
         //Mostrando = true;
-        GetComponent<MeshRenderer>().material.mainTexture = texturaAnverso;
+        GetComponent<RawImage>().texture = texturaAnverso;
         //Invoke ("EsconderCarta", tiempoDelay);
         //crearCartas.GetComponent<CrearCartas>().HacerClick(this);
         Debug.Log("Fin Mostrar Carta Forzado");
     }
     public void ForceEsconder()
 	{
-        GetComponent<MeshRenderer>().material.mainTexture = texturaReverso;
+        GetComponent<RawImage>().texture = texturaReverso;
     }    
 }

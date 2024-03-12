@@ -33,7 +33,8 @@ public class CrearCartas : MonoBehaviour {
     
     public Text textoContadorIntentos;
     public Texture2D[] texturas;
-    public Transform CartasParent;
+    //public Transform CartasParent;
+    public RectTransform CartasParent;
     public void Reiniciar(){
         interfazUsuario.cartas.Clear();
         interfazUsuario.cronometro.text = null;
@@ -136,7 +137,7 @@ public class CrearCartas : MonoBehaviour {
                     case 8:
                         rows = 6;
                         cols = 4;
-                        Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
+                        //Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
                         break;
                 }
                         break;
@@ -147,12 +148,12 @@ public class CrearCartas : MonoBehaviour {
                 float factor = 9.0f / nivel;
                 float alter = (float)(carna ? 0.05 : -0.2); 
                 Vector3 posicionTemp = new Vector3((float)(x * (factor + alter)), 0, (float)(i * (factor - 0.2)));
-                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp, Quaternion.Euler(new Vector3(0, 180, 0)));
-                // Generador para UI GameObject cartaTemp = Instantiate(CartaPrefab, CartasParent);
+                //GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp, Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject cartaTemp = Instantiate(CartaPrefab, CartasParent);
                 cartaTemp.transform.localScale *= factor;
                 cartas.Add(cartaTemp);
                 cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;                
-                cartaTemp.transform.parent = CartasParent;
+                //cartaTemp.transform.parent = CartasParent;
                 cont++;
             }
         }
