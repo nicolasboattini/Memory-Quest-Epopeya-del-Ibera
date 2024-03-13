@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: e926f3fc0073bbd43b4cfaa4d66a6574, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6a074854d9783114c984a1e2c70d520f, type: 3}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -89,11 +89,10 @@ MonoBehaviour:
   idCarta: 0
   tiempoDelay: 1
   Mostrando: 0
-  playable: 0
   crearCartas: {fileID: 0}
   interfazUsuario: {fileID: 0}
-  texturaReverso: {fileID: 2800000, guid: 6a074854d9783114c984a1e2c70d520f, type: 3}
   texturaAnverso: {fileID: 0}
+  ActionBtn: {fileID: 8671020077623192074}
   m_flushSound1: {fileID: 8300000, guid: 47ecb863b4838e248bc190a76a431e01, type: 3}
   m_flushSound2: {fileID: 8300000, guid: 09dd62d6ad81f6a468a8aaaba7460901, type: 3}
   flushSound: {fileID: 0}

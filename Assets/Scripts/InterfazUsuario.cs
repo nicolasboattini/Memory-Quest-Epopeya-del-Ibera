@@ -28,10 +28,12 @@ public class InterfazUsuario : MonoBehaviour {
 	public GameObject menuGanador;
     public GameObject menuPerdedor;
     public List<Carta> cartas;
-    public Sprite[] fondos;
-    public SpriteRenderer fondoRender;
+    public Texture2D[] fondos;
+    public RawImage fondoRender;
     public Text cronometro;
-	public Text textoMenuGanador;	
+	public Text textoMenuGanador;
+
+    public Texture2D texturaReverso;
     void Start(){		
         
 	}
@@ -64,7 +66,7 @@ public class InterfazUsuario : MonoBehaviour {
     public void MostrarMenuPerdedor(){
         foreach (Carta carta in cartas)
         {
-        carta.Interactiva = false;
+        carta.ActionBtn.interactable = false;
         }
 		menuPerdedor.SetActive (true);
 		menuMostradoPerdedor = true;        
@@ -80,8 +82,8 @@ public class InterfazUsuario : MonoBehaviour {
         // Mostrar todas las cartas simultáneamente
         foreach (Carta carta in cartas)
         {
-            carta.ForceMostrar();
-            carta.Interactiva = false;
+            carta.ForceFlip(true);
+            carta.ActionBtn.interactable = false;
         }
 
         // Esconder las cartas después de un breve periodo de tiempo
@@ -91,15 +93,15 @@ public class InterfazUsuario : MonoBehaviour {
         Debug.Log("Escondiendo cartas...");
         foreach (Carta carta in cartas)
         {
-            carta.ForceEsconder();
-            carta.Interactiva = true;
+            carta.ForceFlip(false);
+            carta.ActionBtn.interactable = true;
         }
         ActivarCronometro();
     }
 	public void EsconderMenuPerdedor(){
         foreach (Carta carta in cartas)
         {
-        carta.Interactiva = true;
+        carta.ActionBtn.interactable = true;
         }
 		menuPerdedor.SetActive (false);
 		menuMostradoPerdedor = false;
@@ -238,7 +240,7 @@ public class InterfazUsuario : MonoBehaviour {
     }
     public void ChangeSprite(int i)
     {
-        fondoRender.sprite = fondos[i];
+        fondoRender.texture = fondos[i];
     }
     public void Change()
     {
