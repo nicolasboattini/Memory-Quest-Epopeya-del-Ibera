@@ -46,7 +46,7 @@ public class Carta : MonoBehaviour {
 	public void PlayFlush(bool minimi)
 	{		
         if (flushSound.isPlaying) flushSound.Stop();
-        flushSound.clip = minimi ? flushSound.clip = m_flushSound1 : flushSound.clip = m_flushSound2;
+        flushSound.clip = minimi ? m_flushSound1 : m_flushSound2;
         flushSound.Play();
     }
 	public void MostrarCarta(){
@@ -70,6 +70,6 @@ public class Carta : MonoBehaviour {
 	}
 	public void ForceFlip(bool flip)
 	{
-        GetComponent<RawImage>().texture = flip ? GetComponent<RawImage>().texture = texturaAnverso : GetComponent<RawImage>().texture = interfazUsuario.GetComponent<InterfazUsuario>().texturaReverso;
+        GetComponent<RawImage>().texture = flip ? texturaAnverso : interfazUsuario.GetComponent<InterfazUsuario>().texturaReverso;
     }
 }

@@ -119,32 +119,29 @@ public class CrearCartas : MonoBehaviour {
                         rows = 3;
                         cols = 2;
                         CartasParent.GetComponent<GridLayoutGroup>().padding.top = 170;
-                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(270, 335);
-                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(225, 225);
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(390, 485);
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(255, 255);
                         //Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
                         break;
 
                     case 6:
                         rows = 6;
                         cols = 3;
-                        if (carna)
-                        {
-                           
-                        } else
-                        {
-                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 77;
-                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(175, 100);
-                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(175, 175);
-                        }
                         
+                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 70;
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(220, 130);
+                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(220, 220);
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(220, 160) : new Vector2(220, 130);
+
+
                         break;
 
                     case 8:
                         rows = 6;
                         cols = 4;
-                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 75;
-                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(35, 45);
-                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(225, 225);
+                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 0;
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(90, 120);
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(250, 250);
                         //Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
                         break;
                 }
