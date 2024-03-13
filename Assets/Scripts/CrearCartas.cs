@@ -33,7 +33,8 @@ public class CrearCartas : MonoBehaviour {
     
     public Text textoContadorIntentos;
     public Texture2D[] texturas;
-    public Transform CartasParent;
+    //public Transform CartasParent;
+    public RectTransform CartasParent;
     public void Reiniciar(){
         interfazUsuario.cartas.Clear();
         interfazUsuario.cronometro.text = null;
@@ -93,19 +94,19 @@ public class CrearCartas : MonoBehaviour {
                 switch (nivel)
                 {
                     case 2:
-                        Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
+                        //Camera.main.transform.position = new Vector3(4.4f, 9.51753f, 2.7f);
                         rows = 2;
                         cols = 3;
                         break;
                     case 4:
                         rows = 4;
                         cols = 5;
-                        Camera.main.transform.position = new Vector3(4.22f, 8.8f, 3.4f);
+                        //Camera.main.transform.position = new Vector3(4.22f, 8.8f, 3.4f);
                         break;
                     case 6:
                         rows = 5;
                         cols = 6;
-                        Camera.main.transform.position = new Vector3(3.36f, 6.68f, 2.61f);
+                       // Camera.main.transform.position = new Vector3(3.36f, 6.68f, 2.61f);
                         break;
                 }
                 break;
@@ -117,26 +118,31 @@ public class CrearCartas : MonoBehaviour {
                     case 4:
                         rows = 3;
                         cols = 2;
-                        Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
+                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 170;
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(390, 485);
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(255, 255);
+                        //Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
                         break;
 
                     case 6:
                         rows = 6;
                         cols = 3;
-                        if (carna)
-                        {
-                            Camera.main.transform.position = new Vector3(1.54f, 7.78000021f, 3.77000003f);
-                        } else
-                        {
-                            Camera.main.transform.position = new Vector3(1.28999996f, 7.78000021f, 3.97000003f);
-                        }
                         
+                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 70;
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(220, 130);
+                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(220, 220);
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(220, 160) : new Vector2(220, 130);
+
+
                         break;
 
                     case 8:
                         rows = 6;
                         cols = 4;
-                        Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
+                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 0;
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(90, 120);
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(250, 250);
+                        //Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
                         break;
                 }
                         break;
@@ -147,19 +153,18 @@ public class CrearCartas : MonoBehaviour {
                 float factor = 9.0f / nivel;
                 float alter = (float)(carna ? 0.05 : -0.2); 
                 Vector3 posicionTemp = new Vector3((float)(x * (factor + alter)), 0, (float)(i * (factor - 0.2)));
-                GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp, Quaternion.Euler(new Vector3(0, 180, 0)));
-                // Generador para UI GameObject cartaTemp = Instantiate(CartaPrefab, CartasParent);
+                //GameObject cartaTemp = Instantiate(CartaPrefab, posicionTemp, Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject cartaTemp = Instantiate(CartaPrefab, CartasParent);
                 cartaTemp.transform.localScale *= factor;
                 cartas.Add(cartaTemp);
                 cartaTemp.GetComponent<Carta>().posicionOriginal = posicionTemp;                
-                cartaTemp.transform.parent = CartasParent;
+                //cartaTemp.transform.parent = CartasParent;
                 cont++;
             }
         }
         AsignarTexturas();
-        Barajar();		
+        Mezclar();		
     }
-
     void AsignarTexturas(){
 
 		int[] arrayTemp =new int[texturas.Length];
@@ -190,33 +195,13 @@ public class CrearCartas : MonoBehaviour {
 			cartas [i].GetComponent<Carta> ().idCarta = i / 2;
 		}
 	}
-
-	void Barajar(){
-		int aleatorio;
-
-		for (int i = 0; i < cartas.Count; i++) {
-			aleatorio = Random.Range (i, cartas.Count);
-
-			cartas [i].transform.position = cartas [aleatorio].transform.position  ;
-			cartas [aleatorio].transform.position  = cartas [i].GetComponent<Carta>().posicionOriginal;
-
-			cartas [i].GetComponent<Carta> ().posicionOriginal = cartas [i].transform.position;
-			cartas [aleatorio].GetComponent<Carta> ().posicionOriginal = cartas [aleatorio].transform.position;
-		}
-	}
-
 	public void HacerClick(Carta _carta){
-        //Debug.Log("Estado mostrandoCartasInicialmente: " + interfazUsuario.mostrandoCartasInicialmente);
-        //if(!interfazUsuario.mostrandoCartasInicialmente)
-        //{
             if (CartaMostrada == null)
             {
                 CartaMostrada = _carta;
             }
             else
             {
-                //contadorClicks++; Contador de Intentos
-                //ActualizarUI (); 
                 if (CompararCartas(_carta.gameObject, CartaMostrada.gameObject))
                 {
                     print("Enhorabuena! Has encontrado una pareja!");
@@ -241,7 +226,6 @@ public class CrearCartas : MonoBehaviour {
                     else
                     {
                         //Mostrar info de carta y pausar
-                        Debug.Log(_carta.GetComponent<Carta>().texturaAnverso.name);
                         string panelName = _carta.GetComponent<Carta>().texturaAnverso.name;
                         for (int i = 0; i < infoPanels.Length; i++)
                         {
@@ -249,7 +233,7 @@ public class CrearCartas : MonoBehaviour {
                             {
                                 foreach(Carta carta in interfazUsuario.cartas)
                                 {
-                                carta.Interactiva = false;
+                                carta.ActionBtn.interactable = false;
                                 }
                                 interfazUsuario.PausarCronometro();
                                 infoPanels[i].gameObject.SetActive(true);
@@ -275,19 +259,12 @@ public class CrearCartas : MonoBehaviour {
                     print("La Pareja No Coincide");
                 }
                 CartaMostrada = null;
-
             }
-        //}
-
-        
-
 	}
     public void TurboSwap()
     {
         turbo = !turbo;
     }
-
-
     public void CloseInfoPanel()
     {
         for (int i = 0;i < infoPanels.Length;i++)
@@ -302,10 +279,9 @@ public class CrearCartas : MonoBehaviour {
 
         foreach (Carta carta in interfazUsuario.cartas)
         {
-            carta.Interactiva = true;
+            carta.ActionBtn.interactable = true;
         }
     }
-
 	public bool CompararCartas(GameObject carta1, GameObject carta2){
 		bool resultado;
 		if (carta1.GetComponent<Carta> ().idCarta  ==
@@ -316,10 +292,37 @@ public class CrearCartas : MonoBehaviour {
 		}
 		return resultado;
 	}
-
 	public void ActualizarUI(){
 		textoContadorIntentos.text = "" + contadorClicks;
 	}
+    public void Mezclar()
+    {
+        // Obtener todos los hijos del GridLayout
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in CartasParent)
+        {
+            children.Add(child);
+        }
 
-		
+        // Reordenar aleatoriamente los hijos
+        Shuffle(children);
+
+        // Reorganizar los elementos en el GridLayout según el nuevo orden aleatorio
+        foreach (Transform child in children)
+        {
+            child.SetSiblingIndex(Random.Range(0, CartasParent.childCount));
+        }
+    }
+
+    // Función para reordenar aleatoriamente una lista
+    private void Shuffle<T>(List<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, n + 1);
+            (list[n], list[k]) = (list[k], list[n]);
+        }
+    }
 }

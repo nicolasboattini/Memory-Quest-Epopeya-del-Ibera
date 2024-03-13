@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Mainv2.unity
     guid: 3245c317fac38c94bbcdb0b4256d24e7
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 595b922b993b47d429b0a0f0e8146040
+  - enabled: 1
     path: Assets/Scenes/Mainv2 1.unity
     guid: 4aa2bc5230bf65a4d9a5aa22f89f9fec
   - enabled: 1
     path: Assets/Scenes/CARNAVAL.unity
     guid: e910236a001c4f945bd0ba8ed106a4c5
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 595b922b993b47d429b0a0f0e8146040
   m_configObjects: {}
