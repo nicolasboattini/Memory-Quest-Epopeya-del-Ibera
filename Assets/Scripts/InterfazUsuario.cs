@@ -75,7 +75,9 @@ public class InterfazUsuario : MonoBehaviour {
 	}    
     IEnumerator mostrarTodasCartasRutina()
     {
+        GameObject.Find("BtnMostrarMenu").GetComponent<Button>().interactable = false;
         PausarCronometro ();
+
         yield return new WaitForSeconds(1);
         cartas[1].PlayFlush(true);
         Debug.Log("Mostrando Cartas...");
@@ -97,6 +99,7 @@ public class InterfazUsuario : MonoBehaviour {
             carta.ActionBtn.interactable = true;
         }
         ActivarCronometro();
+        GameObject.Find("BtnMostrarMenu").GetComponent<Button>().interactable = true;
     }
 	public void EsconderMenuPerdedor(){
         foreach (Carta carta in cartas)
@@ -183,9 +186,14 @@ public class InterfazUsuario : MonoBehaviour {
                     {
                         case 4:
                             tiempoRestante = 30 - SegundosCronometro;
+                            if (pausado)
+                            {
+                                Debug.Log("Me la pela resto el tiempo igual");
+                            }
                             if (tiempoRestante <= 0)
                             {
-                                tiempoRestante = 0;
+                                Debug.Log("El tiempo termino.")
+;                                tiempoRestante = 0;
                                 MostrarMenuPerdedor();
                             }
                             break;
@@ -218,15 +226,20 @@ public class InterfazUsuario : MonoBehaviour {
             int segundos = tiempoRestante % 60;
             string tiempoRestanteStr = string.Format("{0}:{1:00}", minutos, segundos);
             cronometro.text = tiempoRestanteStr;
+            return;
         }
+        Debug.Log("No se actualiza");
     }
     public void PausarCronometro()
     {
         if (inicioPresionado && !pausado) // Comprobar si el cronómetro está en pausa y si el botón de inicio ha sido presionado
         {
+            Debug.Log("Tiempo pausado");
             pausado = true;
             tiempoPausa = Time.time;
+            return;
         }
+        Debug.Log("No se pauso el tiempo");
     }
     public void Inicio()
     {
