@@ -116,20 +116,18 @@ public class CrearCartas : MonoBehaviour {
                 //SWITCH VERTICAL                
                 switch (nivel)
                 {
-                    case 4:
+                    case 4: //facil
                         rows = 3;
                         cols = 2;
-                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 250;
-                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(390, 600);
-                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(300, 300);
+                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 150;
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(230, 230);
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(300, 490);
                         Debug.Log(Screen.height);
                         Debug.Log(Screen.currentResolution.height);
-                        if (Screen.height < 2000)
+                        if (Screen.height == 1920 || Screen.height == 1280)
                         {
-
-                            Debug.Log("Entrando a res <2000");
-                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 140;
-                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(390, 510);
+                            Debug.Log("Entrando a Desktop res " + Screen.height);                            
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(390, 375);
                         }
                         
                         //Camera.main.transform.position = new Vector3(1.0f, 6.30000019f, 2.52999997f);
@@ -137,17 +135,16 @@ public class CrearCartas : MonoBehaviour {
 
                     case 6:
                         rows = 6;
-                        cols = 3;
-                        
-                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 70;
-                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(250, 250);
-                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(220, 200) : new Vector2(220, 190);
-                        if (Screen.height < 2000)
+                        cols = 3;                        
+                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 50;
+                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = carna ? new Vector2(225, 225) : new Vector2(210, 210);
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(140, 110) : new Vector2(140, 120);
+                        if (Screen.height == 1920 || Screen.height == 1280)
                         {
 
-                            Debug.Log("Entrando a res <2000");
-                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = carna ? 110 : 10;
-                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(285, 135) : new Vector2(220, 140);
+                            Debug.Log("Entrando a Desktop res " + Screen.height);
+                            CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(200, 200);
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = carna ? new Vector2(200, 90) : new Vector2(175, 85);
                         }
 
 
@@ -156,15 +153,14 @@ public class CrearCartas : MonoBehaviour {
                     case 8:
                         rows = 6;
                         cols = 4;
-                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 10;
-                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(275, 275);
-                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(45, 175);
-                        if (Screen.height < 2000)
+                        CartasParent.GetComponent<GridLayoutGroup>().padding.top = 0;
+                        CartasParent.GetComponent<GridLayoutGroup>().cellSize = new Vector2(225, 225);
+                        CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(18, 120);
+                        if (Screen.height == 1920 || Screen.height == 1280)
                         {
 
-                            Debug.Log("Entrando a res <2000");
-                            CartasParent.GetComponent<GridLayoutGroup>().padding.top = 0;
-                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(80, 120);
+                            Debug.Log("Entrando a Desktop res " + Screen.height);
+                            CartasParent.GetComponent<GridLayoutGroup>().spacing = new Vector2(55, 75);
                         }
 
                         //Camera.main.transform.position = new Vector3(1.38999999f, 5.88000011f, 2.88000011f);
@@ -261,8 +257,8 @@ public class CrearCartas : MonoBehaviour {
                                 carta.ActionBtn.interactable = false;
                                 }
                                 interfazUsuario.PausarCronometro();
-                                infoPanels[i].gameObject.SetActive(true);
-                                btnClosePanel.gameObject.SetActive(true);
+                                infoPanels[i].SetActive(true);
+                                btnClosePanel.SetActive(true);
                             }
                         }
 
